@@ -1,0 +1,100 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+
+header {
+    text-align: center;
+    background: url(/img/flag6-op2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100vh;
+    h1{
+        font-size: 10em;
+        font-weight: 400;
+        text-shadow: 1px 2px 4px black;
+        font-family: 'Playfair Display', serif;
+    }
+}
+
+#voice{
+    margin-left: auto;
+    margin-right: auto;
+}
+nav{
+    position: fixed;
+    z-index: 1;
+    top: 0;
+}
+
+
+.navlink{
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.brand-logo{
+    font-size: 1.5em !important;
+    font-weight: 550;
+    // font-family: 'Playfair Display', serif;
+}
+
+.logo-img{
+    margin-top: 9px;
+    margin-right: 10px;
+    border-radius: 25px;
+    height: 45px;
+    width: 45px;
+}
+
+#blue{
+    a{
+        color: #0d47a1;
+    }
+    a:hover{
+        color: red;
+    }
+}
+
+.about-para{
+    font-size: 1.2em;
+    margin-bottom: 15px !important;
+}
+
+.card-title{
+    // text-align: center;
+    font-weight: 400 !important;
+    color: #0d47a1  !important;
+}
+
+.modal-content{
+    text-align: center;
+}
+
+.card{
+    margin-top: 25px;
+}
+
+.section{
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+}
+
+@media(max-width: 670px){
+    .logo-img{
+        margin-top: 5px;
+        margin-right: 0px;
+    }
+    #top{
+        height: 500px !important;
+        // border: solid green 3px;
+        h1{
+            font-size: 60px;
+        }
+    }
+    .parallax-container{
+        height: 250px;
+    }
+}
