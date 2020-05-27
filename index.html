@@ -17,7 +17,7 @@
     <nav class="nav-wrapper white">
         <div class="container">
             <!-- <img src="/img/logo1.png" alt="logo" class="logo-img"> -->
-            <a href="#" class="brand-logo indigo-text darken-4">
+            <a href="#top" class="brand-logo indigo-text darken-4">
                 Alderman Gus Black
             </a>
             <a href="#" class="sidenav-trigger" data-target="mobile-links">
@@ -27,27 +27,28 @@
                 <li><a class="navlink indigo-text darken-4" href="#about">About</a></li>
                 <li><a class="navlink indigo-text darken-4" href="#news">News</a></li>
                 <li><a class="navlink indigo-text darken-4" href="#platform">Platform</a></li>
-                <li><a class="navlink indigo-text darken-4" href="#">Join Us</a></li>
+                <li><a class="navlink indigo-text darken-4" href="#join-us">Join Us</a></li>
                 <li><a class="navlink indigo darken-2 white-text" href="#">Donate</a></li>
             </ul>
         </div>
     </nav>
 
-    <ul class="sidenav indigo darken-4" id="mobile-links">
-        <li class="white-text"><a href="#about" class="white-text"><i class="material-icons white-text">home</i>Home</a></li>
-        <li class="white-text"><a href="#news" class="white-text"><i class="material-icons white-text">person</i>About</a></li>
+    <!-- sidenav -->
+    <ul class="sidenav indigo darken-3" id="mobile-links">
+        <li class="white-text"><a href="#about" class="white-text"><i class="material-icons white-text">person</i>About</a></li>
+        <li class="white-text"><a href="#news" class="white-text"><i class="material-icons white-text">rss_feed</i>News</a></li>
         <li class="white-text"><a href="#platform" class="white-text"><i class="material-icons white-text">gavel</i>Platform</a></li>
-        <li class="white-text"><a href="#" class="white-text"><i class="material-icons white-text">people</i>Join Us</a></li>
+        <li class="white-text"><a href="#join-us" class="white-text"><i class="material-icons white-text">people</i>Join Us</a></li>
         <li class="white-text"><a href="#" class="white-text"><i class="material-icons white-text">monetization_on</i>Donate</a></li>
     </ul>
 
     <!-- banner section --> 
-    <header class="showcase valign-wrapper" id="top">
-        <h1 id="voice" class="white-text">My Voice <br> is <br> Your Voice</h1>
+    <header class="showcase valign-wrapper scrollspy" id="top">
+        <h1 id="voice" class="white-text">Your Voice <br> is <br> My Voice</h1>
     </header>
 
     <!-- about gus -->
-    <section class="container about-section center" id="about">
+    <section class="container about-section center scrollspy" id="about">
         <h1 class="indigo-text darken-4">Meet Gus</h1>
         <div class="row center">
             <div class="col s12 l10 offset-l1">
@@ -94,9 +95,9 @@
         </div>
     </div>
 
-    <!-- club sections  -->
+    <!-- about highlights sections  -->
 
-    <section class="container section scrollspy" id="club">
+    <section class="container section scrollspy" id="about-highlights">
         <div class="row">
             <div class="col s12 l4">
                 <img class="responsive-img materialboxed" src="/img/gus.png" alt="veteran">
@@ -136,7 +137,7 @@
     </div>
 
     <!-- news section -->
-    <div class="container" id="news">
+    <section class="container scrollspy" id="news">
 
         <h2 class="indigo-text text-darken-4 center">Latest News</h2>
         <div class="row">
@@ -178,7 +179,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- parallax -->
 
@@ -189,7 +190,7 @@
     </div>
 
     <!-- platform section -->
-    <div class="container" id="platform">
+    <section class="section container scrollspy" id="platform">
         <h2 class="indigo-text darken-4 center">Platform</h2>
         <div class="row">
             <div class="col s12 l4">
@@ -232,7 +233,61 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- parallax -->
+    <div class="parallax-container">
+        <div class="parallax">
+            <img src="/img/american-flag-373362_1920.jpg" alt="flag" class="responsive-img">
+        </div>
     </div>
+
+    <!-- join us section -->
+    <section class="container scrollspy" id="join-us">
+        <h2 class="indigo-text darken-4 center">Join Us</h2>
+        <div class="row">
+            <div class="col s12 l5">
+                <div class="card">
+                    <div class="card-content indigo darken-2 center">
+                        <h5 class="white-text">
+                            Here is an opportunity to do something that will <br>
+                            <em>impact the community!</em> <br> Help Gus make a difference! <br>
+                            <!-- Volunteer by completing our form. -->
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 l6 offset-l1">
+                <form id="contact-form" method="POST" action="https://formspree.io/mzbjdwbd">
+                    <div class="input-field">
+                        <i class="material-icons prefix">person</i>
+                        <input type="text" id="name" name="name" required>
+                        <label type="text" for="name">Name</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">email</i>
+                        <input type="email" id="email" name="_replyto" required>
+                        <label type="email" for="email">Email</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">subject</i>
+                        <input type="text" id="subject" name="subject">
+                        <label type="text" for="subject">Subject</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">message</i>
+                        <textarea id="message" class="materialize-textarea" name="message" required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <div class="input-field center">
+                        <button id="contact-form-button" class="btn red darken-4">Submit</button>
+                        <p id="contact-form-status"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- modal -->
     <div class="container">
@@ -263,7 +318,9 @@
             $('.parallax').parallax();
             $('.materialboxed').materialbox();
             $('.scrollspy').scrollSpy();
-        })
+            $('.tooltipped').tooltip();
+        });
     </script>
+    <script type="text/javascript" src="/index.js"></script>
 </body>
 </html>

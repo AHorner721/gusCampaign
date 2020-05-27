@@ -82,6 +82,31 @@ nav{
     padding-bottom: 4vw;
 }
 
+// form styling
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #0d47a1;
+}
+
+/* label focus color */
+.input-field input:focus + label,
+textarea:focus + label,
+.input[type=checkbox] {
+    color: #0d47a1 !important;
+  }
+/* label underline focus color */
+.row .input-field input:focus,
+textarea:focus {
+    border-bottom: 1px solid #0d47a1 !important;
+    box-shadow: 0 1px 0 0 #0d47a1 !important
+}
+
+.btn{
+    margin-top: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
 @media(max-width: 670px){
     .logo-img{
         margin-top: 5px;
