@@ -34,7 +34,7 @@
     </nav>
 
     <!-- sidenav -->
-    <ul class="sidenav indigo darken-3" id="mobile-links">
+    <ul class="sidenav sidenav-close indigo darken-3" id="mobile-links">
         <li class="white-text"><a href="#about" class="white-text"><i class="material-icons white-text">person</i>About</a></li>
         <li class="white-text"><a href="#news" class="white-text"><i class="material-icons white-text">rss_feed</i>News</a></li>
         <li class="white-text"><a href="#platform" class="white-text"><i class="material-icons white-text">gavel</i>Platform</a></li>
@@ -98,16 +98,21 @@
     <!-- about highlights sections  -->
 
     <section class="container section scrollspy" id="about-highlights">
-        <div class="row">
+        
+        <article class="row">
             <div class="col s12 l4">
-                <img class="responsive-img materialboxed" src="/img/gus.png" alt="veteran">
+                <img class="responsive-img materialboxed" src="/img/blackfam-v2.jpg" alt="vet fam">
             </div>
             <div class="col s12 l6 offset-l1">
-                <h2 class="blue-text text-darken-4">Marine Veteran</h2>
-                <p>Gus served honorably for 30 years in the United States Marine Corps.</p>
+                <h2 class="blue-text text-darken-4">Marine Veterans</h2>
+                <p>Gus served honorably for 30 years in the United States Marine Corps. 
+                    His Wife, Oretha, served 22 years. Gus' children Ashly and Garsheo Jr. 
+                    served 5 years respectively.
+                </p>
             </div>
-        </div>
-        <div class="row">
+        </article>
+
+        <article class="row">
             <div class="col s12 l4 push-l7 offset-l1">
                 <img class="responsive-img materialboxed" src="/img/exchangeClub-small.jpg" alt="richland exchangeClub">
             </div>
@@ -116,8 +121,9 @@
                 <p>Gus is a proud member of the Richland Exchange Club. He is passionate about helping the community.
                 </p>
             </div>
-        </div>
-        <div class="row">
+        </article>
+
+        <article class="row">
             <div class="col s12 l4">
                 <img class="responsive-img materialboxed" src="/img/GUS3.jpg" alt="us army engineers">
             </div>
@@ -125,7 +131,8 @@
                 <h2 class="blue-text text-darken-4">U.S. Army Corp Engineers</h2>
                 <p>Gus currently works for the U.S. Army Corps of Engineers. He is the Operations manager for emergencies.</p>
             </div>
-        </div>
+        </article>
+
     </section>
 
     <!-- parallax -->
@@ -139,11 +146,10 @@
     <!-- news section -->
     <section class="container scrollspy" id="news">
 
-        <h2 class="indigo-text text-darken-4 center">Latest News</h2>
-        <div class="row">
-
+        <h2 class="indigo-text text-darken-4 center">Upcoming Events</h2>
+        <section class="row">
             <div class="col s12 l6">
-                <div class="card">
+                <article class="card">
                     <div class="card-image">
                         <img src="/img/blueribbon.png" alt="news">
                     </div>
@@ -157,11 +163,11 @@
                         <a href="#contact" class="modal-trigger">Contact Us</a>
                         <a href="#">Location</a>
                     </div>
-                </div>
+                </article>
             </div>
 
             <div class="col s12 l6">
-                <div class="card">
+                <article class="card">
                     <div class="card-image">
                         <img src="/img/GUS2-cropped.jpg" alt="event">
                     </div>
@@ -176,9 +182,15 @@
                         <a href="#">Location</a>
                         <a href="#">More Details</a>
                     </div>
-                </div>
+                </article>
             </div>
-        </div>
+        </section>
+
+        <h2 class="indigo-text text-darken-4 center">Latest News</h2>
+        <article class="row">
+            <a class="twitter-timeline" href="https://twitter.com/garsheo1?ref_src=twsrc%5Etfw"
+            data-tweet-limit="3">Tweets by garsheo1</a>
+        </article>
     </section>
 
     <!-- parallax -->
@@ -245,9 +257,9 @@
     <!-- join us section -->
     <section class="container scrollspy" id="join-us">
         <h2 class="indigo-text darken-4 center">Join Us</h2>
-        <div class="row">
+        <section class="row">
             <div class="col s12 l5">
-                <div class="card">
+                <article class="card">
                     <div class="card-content indigo darken-2 center">
                         <h5 class="white-text">
                             Here is an opportunity to do something that will <br>
@@ -255,7 +267,7 @@
                             <!-- Volunteer by completing our form. -->
                         </h5>
                     </div>
-                </div>
+                </article>
             </div>
 
             <div class="col s12 l6 offset-l1">
@@ -286,7 +298,8 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
+
     </section>
 
     <!-- modal -->
@@ -306,11 +319,11 @@
         </div>
     </div>
 
-    <!-- jquery -->
+    <!-- min jquery lib -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
+    <!-- Compiled and minified Materialize Lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+    <!-- jquery functions -->
     <script>
         $(document).ready(function(){
             $('.sidenav').sidenav();
@@ -321,6 +334,9 @@
             $('.tooltipped').tooltip();
         });
     </script>
+    <!-- embed twitter timeline -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- post form data to formspree -->
     <script type="text/javascript" src="/index.js"></script>
 </body>
 </html>
