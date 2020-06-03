@@ -35,6 +35,9 @@ nav{
     font-weight: 500;
 }
 
+//glowing donation text
+
+
 .brand-logo{
     font-size: 1.5em !important;
     font-weight: 550;
@@ -105,6 +108,10 @@ textarea:focus {
     margin-top: 20px;
     padding-left: 80px;
     padding-right: 80px;
+}
+
+.dono-btn{
+    width: 100px;
 }
 
 @media(max-width: 670px){

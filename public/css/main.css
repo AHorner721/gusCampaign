@@ -106,6 +106,10 @@ textarea:focus {
   padding-right: 80px;
 }
 
+.dono-btn {
+  width: 100px;
+}
+
 @media (max-width: 670px) {
   .logo-img {
     margin-top: 5px;
