@@ -110,6 +110,10 @@ textarea:focus {
   width: 100px;
 }
 
+.error {
+  padding-bottom: 20px;
+}
+
 @media (max-width: 670px) {
   .logo-img {
     margin-top: 5px;
