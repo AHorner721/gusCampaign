@@ -1,12 +1,12 @@
-// handle form data
+// handle contact form data
 window.addEventListener("DOMContentLoaded", function() {
 
-    // get the form elements defined in HTML
+    // get the contact form elements defined in HTML
     
     var form = document.getElementById("contact-form");
     var status = document.getElementById("contact-form-status");
 
-    // Success and Error functions for after the form is submitted
+    // Contact Success and Error functions for after the form is submitted
     
     function success() {
       form.reset();
@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", function() {
       status.innerHTML = "Please check form for errors.";
     }
 
-    // handle the form submission event
+    // handle the contact form submission event
 
     form.addEventListener("submit", function(event) {
       event.preventDefault();
