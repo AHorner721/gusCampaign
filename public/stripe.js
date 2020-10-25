@@ -1,5 +1,4 @@
-// create client side checkout session
-
+// create stripe card
 window.onload = (event) =>{
     const stripe = Stripe('pk_test_hGJqkCrgCXL6N2x5kadHnjG400VKyWMBZt');
     var elements = document.getElementById('card-element');
@@ -37,7 +36,7 @@ window.onload = (event) =>{
     const cardButton = document.getElementById('card-button');
     const clientSecret = cardButton.dataset.secret;
 
-// Upon button clicking, complete the payment:
+// Upon clicking donate button, complete the payment:
 cardButton.addEventListener('click', async (event) => {
   event.preventDefault();
   try {

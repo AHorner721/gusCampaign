@@ -1,10 +1,10 @@
 // handle contact form data
-window.addEventListener("DOMContentLoaded", function() {
+window.addEventListener("DOMContentLoaded", ()=> {
 
     // get the contact form elements defined in HTML
     
-    var form = document.getElementById("contact-form");
-    var status = document.getElementById("contact-form-status");
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("contact-form-status");
 
     // Contact Success and Error functions for after the form is submitted
     
@@ -19,9 +19,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // handle the contact form submission event
 
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", (event)=> {
       event.preventDefault();
-      var data = new FormData(form);
+      const data = new FormData(form);
       ajax(form.method, form.action, data, success, error);
     });
   });
@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", function() {
   // helper function for sending an AJAX request
 
   function ajax(method, url, data, success, error) {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.onreadystatechange = function() {

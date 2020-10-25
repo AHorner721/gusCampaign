@@ -118,6 +118,19 @@ textarea:focus {
     padding-bottom: 20px;
 }
 
+.thanks-msg{
+    margin: 15px 0px;
+}
+
+.card-header{
+    background: url(../public/img/dave-sherrill-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100vh;
+}
+
 .StripeElement {
     box-sizing: border-box;
   
@@ -145,6 +158,17 @@ textarea:focus {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+// Future style for server error
+// .errorContainer{
+//     background: #DDAAAA;
+//     padding: 2px;
+//     margin-top: 16px;
+//     display: none;
+// }
+
+// .dono-error{
+//     color: #E03D3D;
+// }
 
 @media(max-width: 670px){
     .logo-img{

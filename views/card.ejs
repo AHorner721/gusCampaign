@@ -13,34 +13,76 @@
     <title>Donate</title>
 </head>
 <body>
-    <div class="container">
+
+    <!-- navbar -->
+    <nav class="nav-wrapper white">
+        <div class="container">
+            <!-- <img src="/img/logo1.png" alt="logo" class="logo-img"> -->
+            <a href="#top" class="brand-logo indigo-text darken-4">
+                Alderman Gus Black
+            </a>
+            <a href="#" class="sidenav-trigger" data-target="mobile-links">
+                <i class="indigo-text darken-4 large material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="navlink indigo-text darken-4" href="#about">About</a></li>
+                <li><a class="navlink indigo-text darken-4" href="#news">News</a></li>
+                <li><a class="navlink indigo-text darken-4" href="#platform">Platform</a></li>
+                <li><a class="navlink indigo-text darken-4" href="#join-us">Join Us</a></li>
+                <li><a class="navlink indigo darken-2 white-text" href="#donations">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
         <div class="row">
-            <div class="col s12 l12">
-                <form id="card" action="/charge" method="POST">
-                    <h5 class="center">Complete Your Donation</h5>
-                    <p class="center">Thank you, <%= name %>, for your generosity! Please enter your payment details below to complete your donation.</p>
-                    <div class="input-field">
-                        <input type="text" id="cardholder-name" name="cardholder-name" value=<%= name%> required>
-                        <label type="text" for="cardholder-name">Cardholder-name:</label>
+            <div class="col s12 l10 offset-l1">
+                <section class="card">
+                    <div class="card-image">
+                        <img src="/img/dave-sherrill-unsplash.jpg" alt="flag" class="responsive-img">
                     </div>
-                    <div class="input-field">
-                        <input type="text" id="address" name="address" required>
-                        <label type="text" for="address">Street Address:</label>
-                    </div>
-                    <div class="stripeInput">
-                        <label for="card-element">Credit or Debit Card Number:</label>
-                        <div id="card-element"></div>
-                        <hr>
-                    </div>
-                    <div class="error" id="card-errors"></div>
-                    <div class="input-field center">
-                        <button id="card-button" class="btn red darken-4" data-secret=<%= intentSecret %>>Donate $<%= amount %></button>
-                    </div> 
-                </form>
+                    <article class="card-content">
+                        <form id="card" action="/charge" method="POST">
+                            <h5 class="center">Complete Your Donation</h5>
+                            <p class="center thanks-msg">Thank you, <%= name %>, for your generosity! Please enter your payment details below to complete your donation.</p>
+                            <div class="input-field formstart">
+                                <input type="text" id="cardholder-name" name="cardholder-name" value=<%= name%> required>
+                                <label type="text" for="cardholder-name">Cardholder-name:</label>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" id="address" name="address" required>
+                                <label type="text" for="address">Street Address:</label>
+                            </div>
+                            <section class="row">
+                                <div class="col s4 l6">
+                                    <div class="input-field">
+                                        <input type="text" id="city" name="city" required>
+                                        <label type="text" for="city">City:</label>
+                                    </div>
+                                </div>
+                                <div class="col s4 l6">
+                                    <div class="input-field">
+                                        <input type="text" id="state" name="state" required>
+                                        <label type="text" for="state">State:</label>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="stripeInput">
+                                <label for="card-element">Credit or Debit Card Number:</label>
+                                <div id="card-element"></div>
+                                <hr>
+                            </div>
+                            <div class="error" id="card-errors"></div>
+                            <div class="input-field center">
+                                <button id="card-button" class="btn red darken-4" data-secret=<%= intentSecret %>>Donate $<%= amount %></button>
+                            </div> 
+                        </form>
+                    </article>
+                </section>
             </div>
         </div>
-    </div>
-    <!-- stripe element handling -->
+    </main>
+    <!-- stripe handling -->
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript" src="/stripe.js"></script>
     <!-- Compiled and minified Materialize Lib -->
