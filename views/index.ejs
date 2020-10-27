@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -49,7 +50,11 @@
 
     <!-- about gus -->
     <section class="container about-section center scrollspy" id="about">
-        <h1 class="indigo-text darken-4">Meet Gus</h1>
+        <h1 class="tagline indigo-text text-darken-4 center">
+            <i class="starIcons material-icons">star</i>
+            Meet Gus
+            <i class="starIcons material-icons">star</i>
+        </h1>
         <div class="row center">
             <div class="col s12 l10 offset-l1">
                 <div class="card">
@@ -146,7 +151,11 @@
     <!-- news section -->
     <section class="container scrollspy" id="news">
 
-        <h2 class="indigo-text text-darken-4 center">Upcoming Events</h2>
+        <h2 class="tagline indigo-text text-darken-4 center">
+            <i class="starIcons material-icons">star</i>
+            Upcoming Events
+            <i class="starIcons material-icons">star</i>
+        </h2>
         <section class="row">
             <div class="col s12 l6">
                 <article class="card">
@@ -186,7 +195,11 @@
             </div>
         </section>
 
-        <h2 class="indigo-text text-darken-4 center">Latest News</h2>
+        <h2 class="tagline indigo-text text-darken-4 center">
+            <i class="starIcons material-icons">star</i>
+            Latest News
+            <i class="starIcons material-icons">star</i>
+        </h2>
         <article class="row">
             <a class="twitter-timeline" href="https://twitter.com/garsheo1?ref_src=twsrc%5Etfw"
             data-tweet-limit="3">Tweets by garsheo1</a>
@@ -203,7 +216,11 @@
 
     <!-- platform section -->
     <section class="section container scrollspy" id="platform">
-        <h2 class="indigo-text darken-4 center">Platform</h2>
+        <h2 class="tagline indigo-text text-darken-4 center">
+            <i class="starIcons material-icons">star</i>
+            Platform
+            <i class="starIcons material-icons">star</i>
+        </h2>
         <div class="row">
             <div class="col s12 l4">
                 <div class="card">
@@ -256,7 +273,11 @@
 
     <!-- join us section -->
     <section class="container scrollspy" id="join-us">
-        <h2 class="indigo-text darken-4 center">Join Us</h2>
+        <h2 class="tagline indigo-text text-darken-4 center">
+            <i class="starIcons material-icons">star</i>
+            Join Us
+            <i class="starIcons material-icons">star</i>
+        </h2>
         <section class="row">
             <div class="col s12 l5">
                 <article class="card">
@@ -309,16 +330,25 @@
 
     <!-- donations section -->
     <section class="container scrollspy" id="donations">
-        <h2 class="indigo-text darken-4 center">Donate</h2>
+        <h2 class="tagline indigo-text text-darken-4 center">
+            <i class="starIcons material-icons">star</i>
+            Donate
+            <i class="starIcons material-icons">star</i>
+        </h2>
         <div class="row">
             <!-- donation form  -->
             <section class="col s12 l6">
                 <form id="card" method="POST" action="">
-                    <h5>Your Information</h5>
+                    <h5 class="indigo-text darken-4 center">Get Started Now</h5>
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
-                        <input type="text" id="d_name" name="name" required>
-                        <label type="text" for="d_name">Name</label>
+                        <input type="text" id="d_name" name="first" required>
+                        <label type="text" for="d_name">First Name:</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">person</i>
+                        <input type="text" id="L_name" name="last" required>
+                        <label type="text" for="L_name">Last Name:</label>
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">email</i>
@@ -378,6 +408,33 @@
         </div>
     </div>
 
+    <!-- footer -->
+    <footer class="page-footer indigo darken-4">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Gus Campaign</h5>
+              <p class="grey-text text-lighten-4">Created by friends of the Gus Campain. For busniess inquiries contact the Developer at 
+                  <a href="#">AshDev2020</a>
+              </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Socials</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright grey darken-4">
+          <div class="container">
+            &copy 2020 Ash Web Services
+            <a class="grey-text text-lighten-4 right" href="#!">Development</a>
+          </div>
+        </div>
+      </footer>
+
     <!-- stripe element handling -->
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript" src="/stripe.js"></script>
@@ -399,6 +456,6 @@
     <!-- embed twitter timeline -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <!-- post contact form data to formspree -->
-    <script type="text/javascript" src="/index.js"></script>
+    <script type="text/javascript" src="/contact.js"></script>
 </body>
 </html>
