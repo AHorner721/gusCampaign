@@ -1,11 +1,12 @@
-// create stripe card
+// create stripe card element
 window.onload = (event) =>{
     const stripe = Stripe('pk_test_hGJqkCrgCXL6N2x5kadHnjG400VKyWMBZt');
-    var elements = document.getElementById('card-element');
+    //* NOTE: Need to use var or stripe card element wont work
+    var elements = document.getElementById('card-element'); 
     elements = stripe.elements();
     var style = {
       base: {
-        // Add your base input styles here. For example:
+        // base input styles
         color: '#32325d',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',

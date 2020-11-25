@@ -15,9 +15,10 @@ header {
 
 header h1 {
   font-size: 10em;
-  font-weight: 400;
+  font-weight: 800;
   text-shadow: 1px 2px 4px black;
   font-family: 'Playfair Display', serif;
+  font-style: italic;
 }
 
 #voice {
@@ -33,11 +34,13 @@ nav {
 
 .navlink {
   font-size: 1.2em;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-.tagline {
+.tagline, h2 {
   font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .starIcons {
@@ -47,6 +50,8 @@ nav {
 .brand-logo {
   font-size: 1.5em !important;
   font-weight: 550;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
 }
 
 .logo-img {
@@ -65,13 +70,22 @@ nav {
   color: red;
 }
 
+p {
+  font-size: 1.2em;
+}
+
 .about-para {
   font-size: 1.2em;
   margin-bottom: 15px !important;
 }
 
+#about-highlights, h2 {
+  font-style: normal;
+}
+
 .card-title {
-  font-weight: 400 !important;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700 !important;
   color: #0d47a1  !important;
 }
 
@@ -109,6 +123,7 @@ textarea:focus {
 }
 
 .btn {
+  font-weight: 600;
   margin-top: 20px;
   padding-left: 80px;
   padding-right: 80px;
@@ -165,10 +180,42 @@ textarea:focus {
   background-color: #fefde5 !important;
 }
 
+.paymentImg {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.paymentImg img {
+  height: 35%;
+  margin-bottom: 0%;
+}
+
+.billBox {
+  margin-top: 100px;
+}
+
+.billBox h5 {
+  font-weight: 700;
+}
+
+.billCard {
+  margin-top: 0%;
+}
+
+#billingForm {
+  padding-bottom: 1.2rem;
+}
+
+#card-button {
+  margin: 0%;
+}
+
 @media (max-width: 670px) {
   .logo-img {
     margin-top: 5px;
-    margin-right: 0px;
+    margin-right: 0%;
+    position: relative;
+    left: 0;
   }
   #top {
     height: 500px !important;

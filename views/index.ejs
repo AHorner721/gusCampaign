@@ -6,8 +6,7 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,800&display=swap" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -17,10 +16,11 @@
     <!-- navbar -->
     <nav class="nav-wrapper white">
         <div class="container">
-            <!-- <img src="/img/logo1.png" alt="logo" class="logo-img"> -->
+            <!-- <img src="/img/icon72x72.png" alt="logo" class="logo-img"> -->
             <a href="#top" class="brand-logo indigo-text darken-4">
                 Alderman Gus Black
             </a>
+            
             <a href="#" class="sidenav-trigger" data-target="mobile-links">
                 <i class="indigo-text darken-4 large material-icons">menu</i>
             </a>
@@ -29,13 +29,13 @@
                 <li><a class="navlink indigo-text darken-4" href="#news">News</a></li>
                 <li><a class="navlink indigo-text darken-4" href="#platform">Platform</a></li>
                 <li><a class="navlink indigo-text darken-4" href="#join-us">Join Us</a></li>
-                <li><a class="navlink indigo darken-2 white-text" href="#donations">Donate</a></li>
+                <li><a class="navlink blue darken-4 white-text" href="#donations">Donate</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- sidenav -->
-    <ul class="sidenav sidenav-close indigo darken-3" id="mobile-links">
+    <ul class="sidenav sidenav-close blue darken-4" id="mobile-links">
         <li class="white-text"><a href="#about" class="white-text"><i class="material-icons white-text">person</i>About</a></li>
         <li class="white-text"><a href="#news" class="white-text"><i class="material-icons white-text">rss_feed</i>News</a></li>
         <li class="white-text"><a href="#platform" class="white-text"><i class="material-icons white-text">gavel</i>Platform</a></li>
@@ -50,7 +50,7 @@
 
     <!-- about gus -->
     <section class="container about-section center scrollspy" id="about">
-        <h1 class="tagline indigo-text text-darken-4 center">
+        <h1 class="tagline blue-text text-darken-4 center">
             <i class="starIcons material-icons">star</i>
             Meet Gus
             <i class="starIcons material-icons">star</i>
@@ -63,7 +63,6 @@
                     </div>
                     <div class="card-content">
                         <span class="card-title">Alderman Garsheo "Gus" Black</span>
-                        <!-- <h4 class="card-title">Alderman Garsheo "Gus" Black</h4> -->
                         <p class="about-para left-align">Gus Black is a proud husband, father and businessman. 
                             He is a decorated 30 year Marine and combat veteran who has served in 
                             Desert Storm, Desert Shield, Afghanistan, and two combat tours of duty in 
@@ -151,7 +150,17 @@
     <!-- news section -->
     <section class="container scrollspy" id="news">
 
-        <h2 class="tagline indigo-text text-darken-4 center">
+        <h2 class="tagline blue-text text-darken-4 center">
+            <i class="starIcons material-icons">star</i>
+            Latest News
+            <i class="starIcons material-icons">star</i>
+        </h2>
+        <article class="row">
+            <a class="twitter-timeline" href="https://twitter.com/garsheo1?ref_src=twsrc%5Etfw"
+            data-tweet-limit="3">Tweets by garsheo1</a>
+        </article>
+
+        <h2 class="tagline blue-text text-darken-4 center">
             <i class="starIcons material-icons">star</i>
             Upcoming Events
             <i class="starIcons material-icons">star</i>
@@ -195,15 +204,6 @@
             </div>
         </section>
 
-        <h2 class="tagline indigo-text text-darken-4 center">
-            <i class="starIcons material-icons">star</i>
-            Latest News
-            <i class="starIcons material-icons">star</i>
-        </h2>
-        <article class="row">
-            <a class="twitter-timeline" href="https://twitter.com/garsheo1?ref_src=twsrc%5Etfw"
-            data-tweet-limit="3">Tweets by garsheo1</a>
-        </article>
     </section>
 
     <!-- parallax -->
@@ -216,7 +216,7 @@
 
     <!-- platform section -->
     <section class="section container scrollspy" id="platform">
-        <h2 class="tagline indigo-text text-darken-4 center">
+        <h2 class="tagline blue-text text-darken-4 center">
             <i class="starIcons material-icons">star</i>
             Platform
             <i class="starIcons material-icons">star</i>
@@ -273,7 +273,7 @@
 
     <!-- join us section -->
     <section class="container scrollspy" id="join-us">
-        <h2 class="tagline indigo-text text-darken-4 center">
+        <h2 class="tagline blue-text text-darken-4 center">
             <i class="starIcons material-icons">star</i>
             Join Us
             <i class="starIcons material-icons">star</i>
@@ -281,7 +281,7 @@
         <section class="row">
             <div class="col s12 l5">
                 <article class="card">
-                    <div class="card-content indigo darken-2 center">
+                    <div class="card-content blue darken-4 center">
                         <h5 class="white-text">
                             Here is an opportunity to do something that will <br>
                             <em>impact the community!</em> <br> Help Gus make a difference!<br>
@@ -289,18 +289,23 @@
                     </div>
                 </article>
             </div>
-            <!-- Volunteer by completing our form. -->
+            <!-- Contact form. -->
             <div class="col s12 l6 offset-l1">
-                <form id="contact-form" method="POST" action="https://formspree.io/mzbjdwbd">
+                <form id="contact-form" method="POST" action="/contact">
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
-                        <input type="text" id="name" name="name" required>
-                        <label type="text" for="name">Name</label>
+                        <input type="text" id="contactFirstName" name="contactFirstName" required>
+                        <label type="text" for="contactFirstName">First Name</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">person</i>
+                        <input type="text" id="contactLastName" name="contactLastName" required>
+                        <label type="text" for="contactLastName">Last Name</label>
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">email</i>
-                        <input type="email" id="email" name="_replyto" required>
-                        <label type="email" for="email">Email</label>
+                        <input type="email" id="contactEmail" name="contactEmail" required>
+                        <label type="email" for="contactEmail">Email</label>
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">subject</i>
@@ -311,6 +316,12 @@
                         <i class="material-icons prefix">message</i>
                         <textarea id="message" class="materialize-textarea" name="message" required></textarea>
                         <label for="message">Message</label>
+                    </div>
+                    <div class="input-field">
+                        <label>
+                            <input type="checkbox" name="newsletter" value="yes">
+                            <span>Get My Newsletter</span>
+                        </label>
                     </div>
                     <div class="input-field center">
                         <button id="contact-form-button" class="btn red darken-4">Submit</button>
@@ -330,7 +341,7 @@
 
     <!-- donations section -->
     <section class="container scrollspy" id="donations">
-        <h2 class="tagline indigo-text text-darken-4 center">
+        <h2 class="tagline blue-text text-darken-4 center">
             <i class="starIcons material-icons">star</i>
             Donate
             <i class="starIcons material-icons">star</i>
@@ -338,7 +349,7 @@
         <div class="row">
             <!-- donation form  -->
             <section class="col s12 l6">
-                <form id="card" method="POST" action="">
+                <form id="card" method="POST" action="/donate">
                     <h5 class="indigo-text darken-4 center">Get Started Now</h5>
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
@@ -373,7 +384,7 @@
             <!-- donation statement -->
             <section class="col s12 l5 offset-l1">
                 <article class="card">
-                    <div class="card-content indigo darken-2 center">
+                    <div class="card-content blue darken-4 center">
                         <h6 class="white-text">
                             We need to start giving back to our city, and help grow our city by bringing in more revenue. 
                             Growing our city is going to take leadership. I am a proven leader having lead more than 
@@ -409,17 +420,17 @@
     </div>
 
     <!-- footer -->
-    <footer class="page-footer indigo darken-4">
+    <footer class="page-footer blue darken-4">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
-              <h5 class="white-text">Gus Campaign</h5>
-              <p class="grey-text text-lighten-4">Created by friends of the Gus Campain. For busniess inquiries contact the Developer at 
-                  <a href="#">AshDev2020</a>
+              <h5 class="tagline white-text">Gus Campaign</h5>
+              <p class="grey-text text-lighten-4">Created by friends of Gus Black. For business inquiries contact the Developer 
+                  <a href="#"><span class="white-text"><em>@AshDev2020</em></span></a>
               </p>
             </div>
             <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Socials</h5>
+              <h5 class="tagline white-text">Socials</h5>
               <ul>
                 <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
@@ -429,7 +440,7 @@
         </div>
         <div class="footer-copyright grey darken-4">
           <div class="container">
-            &copy 2020 Ash Web Services
+            Copyright &copy 2020 Ash Web Services
             <a class="grey-text text-lighten-4 right" href="#!">Development</a>
           </div>
         </div>
@@ -455,7 +466,5 @@
     </script>
     <!-- embed twitter timeline -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <!-- post contact form data to formspree -->
-    <script type="text/javascript" src="/contact.js"></script>
 </body>
 </html>

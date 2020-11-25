@@ -6,10 +6,11 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/card.css">
     <title>Donate</title>
 </head>
 <body>
@@ -29,55 +30,59 @@
                 <li><a class="navlink indigo-text darken-4" href="#news">News</a></li>
                 <li><a class="navlink indigo-text darken-4" href="#platform">Platform</a></li>
                 <li><a class="navlink indigo-text darken-4" href="#join-us">Join Us</a></li>
-                <li><a class="navlink indigo darken-2 white-text" href="#donations">Donate</a></li>
+                <li><a class="navlink blue darken-4 white-text" href="#donations">Donate</a></li>
             </ul>
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container billBox">
         <div class="row">
             <div class="col s12 l10 offset-l1">
-                <section class="card">
-                    <div class="card-image">
-                        <img src="/img/dave-sherrill-unsplash.jpg" alt="flag" class="responsive-img">
+                <section class="card large">
+                    <div class="card-image paymentImg">
+                        <img src="/img/bill.png" alt="flag" class="responsive-img">
                     </div>
-                    <article class="card-content">
-                        <form id="card" action="/charge" method="POST">
-                            <h5 class="center">Complete Your Donation</h5>
-                            <p class="center thanks-msg">Thank you, <%= name %>, for your generosity! Please enter your payment details below to complete your donation.</p>
-                            <div class="input-field formstart">
-                                <input type="text" id="cardholder-name" name="cardholder-name" value=<%= name %> required>
-                                <label type="text" for="cardholder-name">Cardholder-name:</label>
-                            </div>
-                            <div class="input-field">
-                                <input type="text" id="address" name="address" required>
-                                <label type="text" for="address">Street Address:</label>
-                            </div>
-                            <section class="row">
-                                <div class="col s4 l6">
-                                    <div class="input-field">
-                                        <input type="text" id="city" name="city" required>
-                                        <label type="text" for="city">City:</label>
-                                    </div>
+                    <!-- horizontal-stacked -->
+                    <div class="card billCard"> 
+                        <article class="card-content" id="billingForm">
+                            <form id="card" action="/charge" method="POST">
+                                <h5 class="blue-text text-darken-4 center">Complete Your Donation</h5>
+                                <!-- pass in name from server -->
+                                <!-- <p class="center thanks-msg">Thank you, blank, for your generosity! Please enter your payment details below to complete your donation.</p> -->
+                                <div class="input-field formstart">
+                                    <input type="text" id="cardholder-name" name="cardholder-name" value="blank" required>
+                                    <label type="text" for="cardholder-name">Cardholder-name:</label>
                                 </div>
-                                <div class="col s4 l6">
-                                    <div class="input-field">
-                                        <input type="text" id="state" name="state" required>
-                                        <label type="text" for="state">State:</label>
-                                    </div>
+                                <div class="input-field">
+                                    <input type="text" id="address" name="address" required>
+                                    <label type="text" for="address">Street Address:</label>
                                 </div>
-                            </section>
-                            <div class="stripeInput">
-                                <label for="card-element">Credit or Debit Card Number:</label>
-                                <div id="card-element"></div>
-                                <hr>
-                            </div>
-                            <div class="error" id="card-errors"></div>
-                            <div class="input-field center">
-                                <button id="card-button" class="btn red darken-4" data-secret=<%= intentSecret %>>Donate $<%= amount %></button>
-                            </div> 
-                        </form>
-                    </article>
+                                <section class="row">
+                                    <div class="col s4 l4">
+                                        <div class="input-field">
+                                            <input type="text" id="city" name="city" required>
+                                            <label type="text" for="city">City:</label>
+                                        </div>
+                                    </div>
+                                    <div class="col s2 l2">
+                                        <div class="input-field">
+                                            <input type="text" id="state" name="state" required>
+                                            <label type="text" for="state">State:</label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <div class="stripeInput">
+                                    <label for="card-element">Credit or Debit Card Number:</label>
+                                    <div id="card-element"></div>
+                                    <hr>
+                                </div>
+                                <div class="error" id="card-errors"></div>
+                                <div class="input-field center">
+                                   <!-- put card secret back here -->
+                                </div> 
+                            </form>
+                        </article>
+                    </div>
                 </section>
             </div>
         </div>
