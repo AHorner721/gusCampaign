@@ -10,17 +10,16 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
-    <title>Alderman Black</title>
+    <title>Alderman Black | Home</title>
 </head>
 <body>
     <!-- navbar -->
     <nav class="nav-wrapper white">
-        <div class="container">
-            <!-- <img src="/img/icon72x72.png" alt="logo" class="logo-img"> -->
+        <div class="container">            
             <a href="#top" class="brand-logo indigo-text darken-4">
                 Alderman Gus Black
             </a>
-            
+            <!-- <img class="logo-img hide-on-med-and-down" src="/img/icon72x72.png" alt="logo"> -->
             <a href="#" class="sidenav-trigger" data-target="mobile-links">
                 <i class="indigo-text darken-4 large material-icons">menu</i>
             </a>
@@ -162,7 +161,7 @@
 
         <h2 class="tagline blue-text text-darken-4 center">
             <i class="starIcons material-icons">star</i>
-            Upcoming Events
+            Events
             <i class="starIcons material-icons">star</i>
         </h2>
         <section class="row">
@@ -289,9 +288,10 @@
                     </div>
                 </article>
             </div>
-            <!-- Contact form. -->
+            <!-- Newsletter form. -->
             <div class="col s12 l6 offset-l1">
-                <form id="contact-form" method="POST" action="/contact">
+                <form id="contact-form" method="POST" action="/signup">
+                    <h5 class="indigo-text darken-4 center">Get Our Newsletter</h5>
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
                         <input type="text" id="contactFirstName" name="contactFirstName" required>
@@ -307,24 +307,8 @@
                         <input type="email" id="contactEmail" name="contactEmail" required>
                         <label type="email" for="contactEmail">Email</label>
                     </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix">subject</i>
-                        <input type="text" id="subject" name="subject">
-                        <label type="text" for="subject">Subject</label>
-                    </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix">message</i>
-                        <textarea id="message" class="materialize-textarea" name="message" required></textarea>
-                        <label for="message">Message</label>
-                    </div>
-                    <div class="input-field">
-                        <label>
-                            <input type="checkbox" name="newsletter" value="yes">
-                            <span>Get My Newsletter</span>
-                        </label>
-                    </div>
                     <div class="input-field center">
-                        <button id="contact-form-button" class="btn red darken-4">Submit</button>
+                        <button id="contact-form-button" class="btn red darken-4">Sign up</button>
                         <p id="contact-form-status"></p>
                     </div>
                 </form>
@@ -426,22 +410,29 @@
             <div class="col l6 s12">
               <h5 class="tagline white-text">Gus Campaign</h5>
               <p class="grey-text text-lighten-4">Created by friends of Gus Black. For business inquiries contact the Developer 
-                  <a href="#"><span class="white-text"><em>@AshDev2020</em></span></a>
+                  <a href="https://twitter.com/AshDev2020"><span class="white-text"><em>@AshDev2020</em></span></a>
               </p>
             </div>
             <div class="col l4 offset-l2 s12">
               <h5 class="tagline white-text">Socials</h5>
               <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                <li><a class="grey-text text-lighten-3" href="https://twitter.com/garsheo1" target="_blank" >Twitter</a></li>
+                <li><a class="grey-text text-lighten-3" href="https://m.facebook.com/story.php?story_fbid=1322051904538757&id=100002018819193" target="_blank">Facebook</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-copyright grey darken-4">
-          <div class="container">
-            Copyright &copy 2020 Ash Web Services
-            <a class="grey-text text-lighten-4 right" href="#!">Development</a>
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        Copyright &copy 2020 Ash Web Services
+                    </div>
+                    <div class="col l1 offset-l2 s12">
+                        <a class="grey-text text-lighten-4 right-align" href="#!">Development</a>
+                    </div>
+                </div>
+            </div>
           </div>
         </div>
       </footer>

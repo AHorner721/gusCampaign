@@ -57,10 +57,16 @@ nav{
 
 .logo-img{
     margin-top: 9px;
-    margin-right: 10px;
+    margin-right: 0;
     border-radius: 25px;
     height: 45px;
     width: 45px;
+}
+
+.successImg{
+    img{
+        width: 300px;
+    }
 }
 
 #blue{
@@ -68,7 +74,7 @@ nav{
         color: #0d47a1;
     }
     a:hover{
-        color: red;
+        color: #5785ca;
     }
 }
 
@@ -190,7 +196,7 @@ textarea:focus {
 }
 
 .billBox{
-    margin-top: 100px;
+    margin-top: 1px;
     h5{
         font-weight: 700;
     }
@@ -220,12 +226,12 @@ textarea:focus {
 // }
 
 @media(max-width: 670px){
-    .logo-img{
-        margin-top: 5px;
-        margin-right: 0%;
-        position: relative;
-        left: 0;
-    }
+    // .logo-img{
+    //     margin-top: 5px;
+    //     margin-right: 0%;
+    //     position: relative;
+    //     left: 0;
+    // }
     #top{
         height: 500px !important;
         // border: solid green 3px;

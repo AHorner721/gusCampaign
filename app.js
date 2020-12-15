@@ -7,20 +7,27 @@ if(process.env.NODE_ENV !== 'production'){
 // API Keys
 const stripe_skey = process.env.STRIPE_SKEY;
 const mailchimp_key = process.env.MAILCHIMP_KEY;
+const database = process.env.DATABASE;
 
 // Imports
 const express = require('express');
 const bodyparser = require('body-parser');
 const {body, validationResult} = require('express-validator');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
+const mongoose = require('mongoose');
+const Donor = require('./models/donor');
 
 // config environment
 const app = express();
+const port = process.env.PORT || 3000;
 mailchimp.setConfig({
   apiKey: mailchimp_key,
   server: 'us2',
 });
-const port = process.env.PORT || 3000;
+
+// globally visibile donation object
+// overwritten when new donation is created
+let donationCollection = {};
 
 // Initialize View Engine
 app.set('view engine','ejs');
@@ -32,15 +39,19 @@ app.get('/', (req,res)=>{
     res.render('index');
 });
 
-app.get('/card', (req, res)=>{
-    res.render('card');
-});
-app.get('/thanks', (req, res)=>{
-    res.render('thanks');
-});
+// remove these routes once finished
+// app.get('/card', (req, res)=>{
+//     res.render('card');
+// });
+// app.get('/thanks', (req, res)=>{
+//     res.render('thanks');
+// });
+// app.get('/signup', (req, res)=>{
+//     res.render('signup');
+// });
 
-// contact request
-app.post('/contact',[ 
+// newsletter subscription
+app.post('/signup',[ 
   body('contactEmail')
     .isEmail()
     .normalizeEmail(),
@@ -80,12 +91,11 @@ app.post('/contact',[
       }catch(error){
         console.log(error);
       }
-    //TODO: add success message
-    res.render('/');
+    res.render('signup');
     next();
 });
 
-// donation request
+// donation route
 app.post('/donate',[  // Express-Validation. Check/Sanitize body
   body('_replyto') // email address
     .isEmail()
@@ -112,13 +122,22 @@ app.post('/donate',[  // Express-Validation. Check/Sanitize body
 
     if (amount > 0){ // Data is valid!
       try {
-        // Create a Stripe Payment Intent:
+        // Create a Stripe Payment Intent object:
         const stripe = require('stripe')(stripe_skey);
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount * 100, // In cents
           currency: 'usd',
           receipt_email: email,
         });
+
+        // create donor document
+        donationCollection = new Donor({
+          name: name,
+          amount: amount,
+          paymentIntent: paymentIntent.client_secret
+        });
+
+        // pass PaymentIntent object to client-side
         res.render('card', {name: name, amount: amount, intentSecret: paymentIntent.client_secret });
       } catch(err) {
         console.log('Error! ', err.message);
@@ -128,9 +147,7 @@ app.post('/donate',[  // Express-Validation. Check/Sanitize body
   });
 
 // complete transaction
-app.post('/charge',[  
-  body('cardholder-name')
-    .escape(),
+app.post('/charge',[//
   body('address')
     .trim().escape(),
   body('city')
@@ -144,11 +161,21 @@ app.post('/charge',[
     return res.status(422).json({ errors: errors.array() });
   }
 
-  console.log('payment processing...');
+  donationCollection.save()
+    .then((response)=>{
+      console.log(`Donor Created: ${response}`);
+    }).catch(err=>console.log(err));
+    
+  console.log('payment processed');
   res.render('thanks');
   next(); 
 });
 
-app.listen(port, ()=>{
+// connect database
+mongoose.connect(database, {useNewUrlParser: true, useUnifiedTopology: true})
+.then((response)=>{
+  console.log('connected to database');
+  app.listen(port, ()=>{
     console.log('Listening on port: '+ port);
-});
+  });
+}).catch(err=>console.log(err));

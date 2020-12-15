@@ -2,7 +2,7 @@
 window.onload = (event) =>{
     const stripe = Stripe('pk_test_hGJqkCrgCXL6N2x5kadHnjG400VKyWMBZt');
     //* NOTE: Need to use var or stripe card element wont work
-    var elements = document.getElementById('card-element'); 
+    var elements = document.querySelector('#card-element'); 
     elements = stripe.elements();
     var style = {
       base: {
@@ -33,7 +33,7 @@ window.onload = (event) =>{
       }
     });
     
-    const cardholderName = document.getElementById('cardholder-name');
+    const cardHolderName = document.getElementById('cardHolderName');
     const cardButton = document.getElementById('card-button');
     const clientSecret = cardButton.dataset.secret;
 
@@ -44,7 +44,7 @@ cardButton.addEventListener('click', async (event) => {
     const result = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: card,
-        billing_details: {name: cardholderName.value},
+        billing_details: {name: cardHolderName.value},
       }
     });
     if (result.error) {
