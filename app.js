@@ -39,16 +39,19 @@ app.get('/', (req,res)=>{
     res.render('index');
 });
 
-// remove these routes once finished
-// app.get('/card', (req, res)=>{
-//     res.render('card');
-// });
-// app.get('/thanks', (req, res)=>{
-//     res.render('thanks');
-// });
-// app.get('/signup', (req, res)=>{
-//     res.render('signup');
-// });
+// PWA handling manifest, service worker, and loader file
+app.get('/manifest.json', (req,res)=>{
+  res.header('Content-Type', 'text/cache-manifest');
+  res.sendFile(path.join(__dirname,'manifest.json'));
+});
+app.get('/sw.js', (req,res)=>{
+  res.header('Content-Type', 'text/javascript');
+  res.sendFile(path.join(__dirname,'sw.js'));
+});
+app.get('/loader.js', (req,res)=>{
+  res.header('Content-Type', 'text/javascript');
+  res.sendFile(path.join(__dirname,'loader.js'));
+});
 
 // newsletter subscription
 app.post('/signup',[ 

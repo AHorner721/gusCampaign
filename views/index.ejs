@@ -10,6 +10,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="manifest" href="../manifest.json">
     <title>Alderman Black | Home</title>
 </head>
 <body>
@@ -44,7 +45,7 @@
 
     <!-- banner section --> 
     <header class="showcase valign-wrapper scrollspy" id="top">
-        <h1 id="voice" class="white-text">Your Voice <br> is <br> My Voice</h1>
+        <h1 id="voice" class="white-text">My Voice <br> is <br> Your Voice</h1>
     </header>
 
     <!-- about gus -->
@@ -437,6 +438,8 @@
         </div>
       </footer>
 
+    <!-- load service worker -->
+    <script src="/loader.js"></script>
     <!-- stripe element handling -->
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript" src="/stripe.js"></script>
