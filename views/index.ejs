@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="/img/icons/icon96x96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#ffffff">
+    <meta name="theme-color" content="#0d47a1">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- google fonts -->
@@ -17,7 +21,7 @@
     <!-- navbar -->
     <nav class="nav-wrapper white">
         <div class="container">            
-            <a href="#top" class="brand-logo indigo-text darken-4">
+            <a href="#top" id="app-title-bar" class="brand-logo indigo-text darken-4">
                 Alderman Gus Black
             </a>
             <!-- <img class="logo-img hide-on-med-and-down" src="/img/icon72x72.png" alt="logo"> -->
@@ -172,14 +176,13 @@
                         <img src="/img/blueribbon.png" alt="news">
                     </div>
                     <div class="card-content">
-                        <span class="card-title">Richland Exchange Club</span>
-                        <p>Alderman Gus Black is a proud member of the Richland Exchange Club!
-                            We hold meetings on the 1st and 3rd Tuesday each month. Come by and meet Gus!
+                        <span class="card-title">Blue Ribbon</span>
+                        <p>Alderman Gus Black and the Richland Exchange Club is working to prevent child abuse.  
                         </p>
                     </div>
                     <div id="blue" class="card-action">
                         <a href="#contact" class="modal-trigger">Contact Us</a>
-                        <a href="#">Location</a>
+                        <a href="#">More Details</a>
                     </div>
                 </article>
             </div>
@@ -197,7 +200,6 @@
                     </div>
                     <div id="blue" class="card-action">
                         <a href="#contact" class="modal-trigger">Contact Us</a>
-                        <a href="#">Location</a>
                         <a href="#">More Details</a>
                     </div>
                 </article>
@@ -229,8 +231,7 @@
                     </div>
                     <div class="card-content">
                         <span class="card-title center">Economic Growth</span>
-                        <p>Alderman Gus Black is a proud member of the Richland Exchange Club!
-                            We hold meetings on the 1st and 3rd Tuesday each month. Come by and meet Gus!
+                        <p>Alderman Gus Black is actively looking to bring in new businesses to the economy.
                         </p>
                     </div>
                 </div>
@@ -242,8 +243,7 @@
                     </div>
                     <div class="card-content">
                         <span class="card-title center">Lower Taxes</span>
-                        <p>Alderman Gus Black is a proud member of the Richland Exchange Club!
-                            We hold meetings on the 1st and 3rd Tuesday each month. Come by and meet Gus!
+                        <p>Alderman Gus Black believes Richland residents should have lower taxes. Alderman Black will work to lower taxes for local residents. 
                         </p>
                     </div>
                 </div>
@@ -255,8 +255,7 @@
                     </div>
                     <div class="card-content">
                         <span class="card-title center">Child Development</span>
-                        <p>Alderman Gus Black is a proud member of the Richland Exchange Club!
-                            We hold meetings on the 1st and 3rd Tuesday each month. Come by and meet Gus!
+                        <p>Alderman Gus Black deeply cares about Richland's youth. He is committed to improving youth facilities like the Richland Community Center. 
                         </p>
                     </div>
                 </div>
@@ -358,7 +357,7 @@
                         <label type="text" for="amount">Amount</label>
                     </div>
                     <div class="input-field center">
-                        <button id="submit" class="btn red darken-4">Make A Donation</button>
+                        <button id="submit" class="btn red darken-4">Donate</button>
                     </div>
                     <!-- <div class="errorContainer">
                         Find out how to show display server errors
@@ -392,10 +391,8 @@
         <div class="modal" id="contact">
             <div class="modal-content">
                 <h4>Contact Us</h4>
-                <p>Richland Exchange Club <br> 
-                    380 Scarbrough Street <br>
-                    Richland, MS 39218 <br>
-                    Tel:(601) 932-3000
+                <p><strong>Richland Exchange Club</strong><br> 
+                    We meet in the Richland Parks & Recreation building (old police department) on Scarbrough Street on the 3rd Tuesday of every month. Come join us.
                 </p>
             </div>
             <div class="modal-footer">
@@ -427,7 +424,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        Copyright &copy 2020 Ash Web Services
+                        Copyright &copy 2021 Alderman Black Campaign
                     </div>
                     <div class="col l1 offset-l2 s12">
                         <a class="grey-text text-lighten-4 right-align" href="#!">Development</a>

@@ -49,7 +49,7 @@ nav{
 }
 
 .brand-logo{
-    font-size: 1.5em !important;
+    font-size: 1.5em;
     font-weight: 550;
     font-style: italic;
     font-family: 'Playfair Display', serif;
@@ -234,12 +234,41 @@ textarea:focus {
     // }
     #top{
         height: 500px !important;
-        // border: solid green 3px;
+        //border: solid green 3px;
         h1{
             font-size: 60px;
         }
     }
+
+    #app-title-bar{
+        font-size: 20px;
+    }
+
     .parallax-container{
         height: 250px;
+    }
+}
+
+@media(max-width: 400px){
+    #app-title-bar{
+        font-size: 15px;
+    }
+
+    .tagline, h1{
+        font-size: 36px;
+    }
+
+    .starIcons{
+        font-size: 25px;
+    }
+
+    #about-highlights{
+        h2{
+            font-size: 36px;
+        }
+    }
+
+    #submit{
+        font-size: 12px;
     }
 }

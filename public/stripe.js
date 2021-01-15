@@ -1,6 +1,6 @@
 // create stripe card element
 window.onload = (event) =>{
-    const stripe = Stripe('pk_test_hGJqkCrgCXL6N2x5kadHnjG400VKyWMBZt');
+    const stripe = Stripe('pk_test_51I9vq5LLN4Zq9k3ndePolStBv9EswdLCObdAYr24hG3Hl91JsavNAJ97xsIwymriEtkJ1WuOUAmqbpl4ynsIfoIr00dQff0bwS');
     //* NOTE: Need to use var or stripe card element wont work
     var elements = document.querySelector('#card-element'); 
     elements = stripe.elements();

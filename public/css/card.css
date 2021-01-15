@@ -16,6 +16,36 @@ h5 {
 }
 
 #billingForm {
-  background-color: #dbdbdb;
+  background-color: #f3f3f3;
+}
+
+@media (max-width: 670px) {
+  #top {
+    height: 500px !important;
+  }
+  #top h1 {
+    font-size: 60px;
+  }
+  #app-title-bar {
+    font-size: 20px;
+  }
+  .parallax-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  #app-title-bar {
+    font-size: 15px;
+  }
+  .tagline, h1 {
+    font-size: 36px;
+  }
+  .starIcons {
+    font-size: 25px;
+  }
+  #about-highlights h2 {
+    font-size: 36px;
+  }
 }
 /*# sourceMappingURL=card.css.map */

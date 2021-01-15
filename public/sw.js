@@ -1,6 +1,8 @@
-const staticCacheName = 'site-static';
+const staticCacheName = 'site-static-v4';
+const dynamicCacheName = 'site-dynamic-v4';
 const assets = [
     '/',
+    '/fallback.html',
     '/stripe.js',
     '/loader.js',
     '/manifest.json',
@@ -21,8 +23,12 @@ const assets = [
     '/img/american-flag-373362_1920.jpg',
     '/img/dave-sherrill-unsplash.jpg',
     '/img/success.png',
+    '/img/flag6-op2.jpg',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
-    'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'
+    'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
+    'https://js.stripe.com/v3/',
+    'https://code.jquery.com/jquery-3.5.1.min.js',
+    'https://platform.twitter.com/widgets.js'
 ];
 
 // install event
@@ -46,16 +52,28 @@ self.addEventListener('install', evt=>{
 
 // activate event
 self.addEventListener('activate', evt=>{
+    evt.waitUntil(
+        caches.keys().then(keys =>{
+            return Promise.all(keys
+                .filter(key => key !== staticCacheName && key !== dynamicCacheName)
+                .map(key => caches.delete(key))
+            )
+        })
+    );
     console.log('service worker has been activated');
 });
 
 // fetch event
-self.addEventListener('fetch', evt=>{
+self.addEventListener('fetch', evt => {
+    //console.log('fetch event', evt);
     evt.respondWith(
-        caches.match(evt.request)
-        .then(cacheRes =>{
-            return cacheRes || fetch(evt.request);
-        })
+      caches.match(evt.request).then(cacheRes => {
+        return cacheRes || fetch(evt.request).then(fetchRes => {
+          return caches.open(dynamicCacheName).then(cache => {
+            cache.put(evt.request.url, fetchRes.clone());
+            return fetchRes;
+          })
+        });
+      }).catch(() => caches.match('/fallback.html'))
     );
-    // console.log('fetch event', evt);
 });
