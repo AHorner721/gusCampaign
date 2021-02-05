@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v4';
-const dynamicCacheName = 'site-dynamic-v4';
+const staticCacheName = 'site-static-v1';
+const dynamicCacheName = 'site-dynamic-v1';
 const assets = [
     '/',
     '/fallback.html',
@@ -8,13 +8,13 @@ const assets = [
     '/manifest.json',
     '/css/card.css',
     '/css/main.css',
-    '/img/gus4.png',
+    '/img/gus4.jpg',
     '/img/flag5.jpg',
     '/img/blackfam-v2.jpg',
     '/img/exchangeClub-small.jpg',
     '/img/GUS3.jpg',
     '/img/flag4.jpg',
-    '/img/blueribbon.png',
+    '/img/blueribbon.jpg',
     '/img/GUS2-cropped.jpg',
     '/img/flag2.jpg',
     '/img/plants.jpg',
@@ -24,6 +24,7 @@ const assets = [
     '/img/dave-sherrill-unsplash.jpg',
     '/img/success.png',
     '/img/flag6-op2.jpg',
+    '/img/bestLanding1.jpeg',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
     'https://js.stripe.com/v3/',
