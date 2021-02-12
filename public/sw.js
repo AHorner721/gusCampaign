@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v1';
-const dynamicCacheName = 'site-dynamic-v1';
+const staticCacheName = 'site-static-v4';
+const dynamicCacheName = 'site-dynamic-v4';
 const assets = [
     '/',
     '/fallback.html',
@@ -25,6 +25,14 @@ const assets = [
     '/img/success.png',
     '/img/flag6-op2.jpg',
     '/img/bestLanding1.jpeg',
+    '/img/army-corp-eng.jpg',
+    '/img/award-ceremony.jpg',
+    '/img/district-ceremony.jpg',
+    '/img/girlswhocode.jpg',
+    '/img/governor-meeting.jpg',
+    '/img/meeting.jpg',
+    '/img/monument.jpg',
+    '/img/olyminpic-meeting.jpg',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
     'https://js.stripe.com/v3/',

@@ -16,11 +16,11 @@
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.28",
     "body-parser": "^1.19.0",
-    "ejs": "^3.1.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-validator": "^6.9.2",
     "mongoose": "^5.11.15",
-    "stripe": "^8.133.0"
+    "stripe": "^8.134.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

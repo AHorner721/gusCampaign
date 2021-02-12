@@ -22,7 +22,7 @@ header {
 
 nav {
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   top: 0;
 }
 
@@ -77,8 +77,20 @@ p {
   margin-bottom: 15px !important;
 }
 
-#about-highlights, h2 {
+#about-highlights, h2, h3 {
   font-style: normal;
+}
+
+.list {
+  display: list-item;
+  list-style: inside;
+}
+
+.item {
+  display: list-item !important;
+  list-style: inside;
+  list-style-type: disc !important;
+  font-size: 1.2em;
 }
 
 .card-title {
@@ -208,6 +220,10 @@ textarea:focus {
   margin: 0%;
 }
 
+.slider .indicators .indicator-item.active {
+  background-color: #0d47a1 !important;
+}
+
 @media (max-width: 1080px) {
   header {
     height: 70vh;
@@ -242,6 +258,9 @@ textarea:focus {
   }
   #about-highlights h2 {
     font-size: 36px;
+  }
+  .slide-shadow {
+    text-shadow: 1px 2px 1px #0d47a1;
   }
   #submit {
     font-size: 12px;
