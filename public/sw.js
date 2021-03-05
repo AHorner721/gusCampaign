@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v4';
-const dynamicCacheName = 'site-dynamic-v4';
+const staticCacheName = 'site-static-v1';
+const dynamicCacheName = 'site-dynamic-v1';
 const assets = [
     '/',
     '/fallback.html',
@@ -13,6 +13,7 @@ const assets = [
     '/img/blackfam-v2.jpg',
     '/img/exchangeClub-small.jpg',
     '/img/GUS3.jpg',
+    '/img/GUS3-1.jpg',
     '/img/flag4.jpg',
     '/img/blueribbon.jpg',
     '/img/GUS2-cropped.jpg',
@@ -24,7 +25,7 @@ const assets = [
     '/img/dave-sherrill-unsplash.jpg',
     '/img/success.png',
     '/img/flag6-op2.jpg',
-    '/img/bestLanding1.jpeg',
+    '/img/bestLanding.jpg',
     '/img/army-corp-eng.jpg',
     '/img/award-ceremony.jpg',
     '/img/district-ceremony.jpg',
@@ -33,6 +34,7 @@ const assets = [
     '/img/meeting.jpg',
     '/img/monument.jpg',
     '/img/olyminpic-meeting.jpg',
+    '/img/work-test.jpg',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css',
     'https://js.stripe.com/v3/',

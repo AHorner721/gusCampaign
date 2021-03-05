@@ -7,8 +7,7 @@ body{
 header {
     margin-top: 100px;
     text-align: center;
-    // background: url(/img/flag6-op2.jpg);
-    background: url(/img/bestLanding1.jpeg);
+    background: url(/img/bestLanding.jpg);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -221,21 +220,14 @@ textarea:focus {
 #card-button{
     margin: 0%;
 }
-// Future style for server error
-// .errorContainer{
-//     background: #DDAAAA;
-//     padding: 2px;
-//     margin-top: 16px;
-//     display: none;
-// }
-
-// .dono-error{
-//     color: #E03D3D;
-// }
 
 .slider .indicators .indicator-item.active {
     background-color: #0d47a1 !important;
 }
+
+.slider .slides li .caption {
+    bottom: 15% !important;
+  }
 
 @media(max-width: 1080px){
     header{

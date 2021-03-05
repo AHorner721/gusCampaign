@@ -6,7 +6,7 @@ body {
 header {
   margin-top: 100px;
   text-align: center;
-  background: url(/img/bestLanding1.jpeg);
+  background: url(/img/bestLanding.jpg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -222,6 +222,10 @@ textarea:focus {
 
 .slider .indicators .indicator-item.active {
   background-color: #0d47a1 !important;
+}
+
+.slider .slides li .caption {
+  bottom: 15% !important;
 }
 
 @media (max-width: 1080px) {
