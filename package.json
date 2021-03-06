@@ -4,6 +4,7 @@
   "description": "Alderman Black Campaign 2021",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "serve": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +22,9 @@
     "express-validator": "^6.9.2",
     "mongoose": "^5.11.15",
     "stripe": "^8.134.0"
+  },
+  "engines":{
+    "node": "14.x"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
