@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v3';
-const dynamicCacheName = 'site-dynamic-v3';
+const staticCacheName = 'site-static-v4';
+const dynamicCacheName = 'site-dynamic-v4';
 const assets = [
     '/',
     '/fallback.html',
@@ -9,6 +9,7 @@ const assets = [
     '/css/card.css',
     '/css/main.css',
     '/img/gus4.jpg',
+    '/img/gusblackmarine.jpg',
     '/img/flag5.jpg',
     '/img/blackfam-v2.jpg',
     '/img/exchangeClub-small.jpg',
