@@ -1,0 +1,97 @@
+body {
+  margin: 0%;
+  padding: 0%;
+}
+
+header {
+  margin-top: 100px;
+  margin-bottom: 0px;
+  margin-left: 10%;
+  text-align: center;
+  background: url(/img/bestLanding.jpg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 100vh;
+  max-height: 90vh;
+  font-family: 'Playfair Display', serif;
+}
+
+.tagline, h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+#blue a {
+  color: #0d47a1;
+}
+
+#blue a:hover {
+  color: #5785ca;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+h2, h3 {
+  font-style: normal;
+}
+
+ul.list li {
+  list-style-type: disc !important;
+}
+
+.item {
+  list-style-type: square !important;
+  font-size: 1.2rem;
+}
+
+.btn {
+  font-weight: 600;
+  margin-top: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+@media (max-width: 1153px) {
+  #app-title-bar {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+  .navlink {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1080px) {
+  header {
+    height: 70vh;
+    background-size: contain;
+  }
+}
+
+@media (max-width: 670px) {
+  #app-title-bar {
+    font-size: 20px;
+  }
+  .parallax-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  #app-title-bar {
+    font-size: 15px;
+  }
+  .tagline, h1 {
+    font-size: 36px;
+  }
+  header {
+    margin-top: 0px;
+    background-size: 390px 300px;
+  }
+}
+/*# sourceMappingURL=accomplishments.css.map */

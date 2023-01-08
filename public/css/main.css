@@ -5,6 +5,8 @@ body {
 
 header {
   margin-top: 100px;
+  margin-bottom: 0px;
+  margin-left: 10%;
   text-align: center;
   background: url(/img/bestLanding.jpg);
   background-position: center;
@@ -12,6 +14,7 @@ header {
   background-repeat: no-repeat;
   position: relative;
   height: 100vh;
+  max-height: 90vh;
   font-family: 'Playfair Display', serif;
 }
 
@@ -228,7 +231,7 @@ textarea:focus {
   bottom: 15% !important;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1153px) {
   #app-title-bar {
     font-size: 20px;
     margin-right: 5px;

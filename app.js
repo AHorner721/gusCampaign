@@ -38,6 +38,9 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.get('/', (req,res)=>{
     res.render('index');
 });
+app.get('/accomplishments', (req,res)=>{
+    res.render('accomplishments');
+});
 
 // PWA handling manifest, service worker, and loader file
 app.get('/manifest.json', (req,res)=>{
