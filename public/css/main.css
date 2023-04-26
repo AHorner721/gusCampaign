@@ -3,24 +3,14 @@ body {
   padding: 0%;
 }
 
-header {
-  margin-top: 100px;
-  margin-bottom: 0px;
-  margin-left: 10%;
-  text-align: center;
-  background: url(/img/bestLanding.jpg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative;
-  height: 100vh;
-  max-height: 90vh;
-  font-family: 'Playfair Display', serif;
+.landing {
+  max-width: 80%;
+  margin: 50px auto;
+  font-family: "Playfair Display", serif;
 }
 
-#voice {
-  margin-left: auto;
-  margin-right: auto;
+.landing img {
+  width: 100%;
 }
 
 nav {
@@ -34,8 +24,9 @@ nav {
   font-weight: 600;
 }
 
-.tagline, h2 {
-  font-family: 'Playfair Display', serif;
+.tagline,
+h2 {
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   font-style: italic;
 }
@@ -48,7 +39,7 @@ nav {
   font-size: 1.5em;
   font-weight: 550;
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 .logo-img {
@@ -80,7 +71,9 @@ p {
   margin-bottom: 15px !important;
 }
 
-#about-highlights, h2, h3 {
+#about-highlights,
+h2,
+h3 {
   font-style: normal;
 }
 
@@ -97,9 +90,9 @@ p {
 }
 
 .card-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-weight: 700 !important;
-  color: #0d47a1  !important;
+  color: #0d47a1 !important;
 }
 
 .modal-content {
@@ -123,7 +116,7 @@ p {
 /* label focus color */
 .input-field input:focus + label,
 textarea:focus + label,
-.input[type=checkbox] {
+.input[type="checkbox"] {
   color: #0d47a1 !important;
 }
 
@@ -132,7 +125,7 @@ textarea:focus + label,
 textarea:focus {
   border-bottom: 1px solid #0d47a1 !important;
   -webkit-box-shadow: 0 1px 0 0 #0d47a1 !important;
-          box-shadow: 0 1px 0 0 #0d47a1 !important;
+  box-shadow: 0 1px 0 0 #0d47a1 !important;
 }
 
 .btn {
@@ -165,14 +158,14 @@ textarea:focus {
 
 .StripeElement {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   height: 40px;
   padding: 10px 12px;
   border: 1px solid transparent;
   border-radius: 4px;
   background-color: white;
   -webkit-box-shadow: 0 1px 3px 0 #e6ebf1;
-          box-shadow: 0 1px 3px 0 #e6ebf1;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   -webkit-transition: -webkit-box-shadow 150ms ease;
   transition: -webkit-box-shadow 150ms ease;
@@ -182,7 +175,7 @@ textarea:focus {
 
 .StripeElement--focus {
   -webkit-box-shadow: 0 1px 3px 0 #cfd7df;
-          box-shadow: 0 1px 3px 0 #cfd7df;
+  box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
 .StripeElement--invalid {
@@ -227,8 +220,17 @@ textarea:focus {
   background-color: #0d47a1 !important;
 }
 
+.slider .indicators {
+  bottom: -50px;
+}
+
 .slider .slides li .caption {
   bottom: 15% !important;
+}
+
+.slides,
+.slider {
+  height: 800px !important;
 }
 
 @media (max-width: 1153px) {
@@ -249,12 +251,6 @@ textarea:focus {
 }
 
 @media (max-width: 670px) {
-  #top {
-    height: 500px !important;
-  }
-  #top h1 {
-    font-size: 60px;
-  }
   #app-title-bar {
     font-size: 20px;
   }
@@ -267,7 +263,8 @@ textarea:focus {
   #app-title-bar {
     font-size: 15px;
   }
-  .tagline, h1 {
+  .tagline,
+  h1 {
     font-size: 36px;
   }
   .starIcons {
