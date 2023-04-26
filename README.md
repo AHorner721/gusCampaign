@@ -8,16 +8,18 @@ A progressive web application to support Garsheo "Gus" Black's campaign efforts.
 
 ### Features
 
-- Install as a stand alone application on mobile, tablets and desktop devices.
-- Operates in offline mode.
-- Assets are cached for better app performance.
+- Installable as a stand alone application on mobile, tablets and desktop devices.
+- Offline mode.
+- Assets caching for better app performance.
+- Accept donations via Stripe API.
 
 ### Running local dev
+
+<hr>
 
 #### Prerequistes
 
 - node v14.x^
-- npm
 
 #### Setup
 
@@ -27,4 +29,4 @@ A progressive web application to support Garsheo "Gus" Black's campaign efforts.
 
 ### Preview
 
-![Gus Campain Banner](public\img\preview.jpg)
+<img src="public\img\preview.jpg"  width="500" height="450" alt="Gus Campain Banner">

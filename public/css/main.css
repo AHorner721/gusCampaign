@@ -220,17 +220,19 @@ textarea:focus {
   background-color: #0d47a1 !important;
 }
 
-.slider .indicators {
-  bottom: -50px;
-}
-
 .slider .slides li .caption {
   bottom: 15% !important;
 }
 
-.slides,
-.slider {
-  height: 800px !important;
+@media (min-width: 850px) {
+  .slides,
+  .slider {
+    height: 800px !important;
+  }
+
+  .slider .indicators {
+    bottom: -40px;
+  }
 }
 
 @media (max-width: 1153px) {
