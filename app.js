@@ -1,7 +1,7 @@
 // check if in production mode
-if(process.env.NODE_ENV !== 'production'){
-    const env = require('dotenv');
-    env.config();
+if (process.env.NODE_ENV !== "production") {
+  const env = require("dotenv");
+  env.config();
 }
 
 // API Keys
@@ -10,19 +10,19 @@ const mailchimp_key = process.env.MAILCHIMP_KEY;
 const database = process.env.DATABASE;
 
 // Imports
-const express = require('express');
-const bodyparser = require('body-parser');
-const {body, validationResult} = require('express-validator');
-const mailchimp = require('@mailchimp/mailchimp_marketing');
-const mongoose = require('mongoose');
-const Donor = require('./models/donor');
+const express = require("express");
+const bodyparser = require("body-parser");
+const { body, validationResult } = require("express-validator");
+const mailchimp = require("@mailchimp/mailchimp_marketing");
+const mongoose = require("mongoose");
+const Donor = require("./models/donor");
 
 // config environment
 const app = express();
 const port = process.env.PORT || 3000;
 mailchimp.setConfig({
   apiKey: mailchimp_key,
-  server: 'us2',
+  server: "us2",
 });
 
 // globally visibile donation object
@@ -30,49 +30,70 @@ mailchimp.setConfig({
 let donationCollection = {};
 
 // Initialize View Engine
-app.set('view engine','ejs');
-app.use(express.static('public'));
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 app.use(bodyparser.urlencoded({ extended: false }));
 
-// Routes
-app.get('/', (req,res)=>{
-    res.render('index');
+// Redirect HTTP requests to HTTPS
+app.use((req, res, next) => {
+  if (
+    req.headers["x-forwarded-proto"] !== "https" &&
+    process.env.NODE_ENV === "production"
+  ) {
+    res.redirect("https://" + req.hostname + req.url);
+  } else {
+    next();
+  }
 });
-app.get('/accomplishments', (req,res)=>{
-    res.render('accomplishments');
+
+// Routes
+app.get("/", (req, res) => {
+  res.render("index");
+});
+app.get("/accomplishments", (req, res) => {
+  res.render("accomplishments");
 });
 
 // PWA handling manifest, service worker, and loader file
-app.get('/manifest.json', (req,res)=>{
-  res.header('Content-Type', 'text/cache-manifest');
-  res.sendFile(path.join(__dirname,'manifest.json'));
+app.get("/manifest.json", (req, res) => {
+  res.header("Content-Type", "text/cache-manifest");
+  res.sendFile(path.join(__dirname, "manifest.json"));
 });
-app.get('/sw.js', (req,res)=>{
-  res.header('Content-Type', 'text/javascript');
-  res.sendFile(path.join(__dirname,'sw.js'));
+app.get("/sw.js", (req, res) => {
+  res.header("Content-Type", "text/javascript");
+  res.sendFile(path.join(__dirname, "sw.js"));
 });
-app.get('/loader.js', (req,res)=>{
-  res.header('Content-Type', 'text/javascript');
-  res.sendFile(path.join(__dirname,'loader.js'));
+app.get("/loader.js", (req, res) => {
+  res.header("Content-Type", "text/javascript");
+  res.sendFile(path.join(__dirname, "loader.js"));
 });
 
 // newsletter subscription
-app.post('/signup',[ 
-  body('contactEmail')
-    .isEmail()
-    .normalizeEmail(),
-  body('contactFirstName')
-    .isLength({min: 3, max: 50}).withMessage('Name Length')
-    .isAlpha().withMessage('Name must be letters').trim().escape(),
-  body('contactLastName')
-    .isLength({min: 3, max: 50}).withMessage('Name Length')
-    .isAlpha().withMessage('Name must be letters').trim().escape(),
-], async (req,res,next)=>{    
+app.post(
+  "/signup",
+  [
+    body("contactEmail").isEmail().normalizeEmail(),
+    body("contactFirstName")
+      .isLength({ min: 3, max: 50 })
+      .withMessage("Name Length")
+      .isAlpha()
+      .withMessage("Name must be letters")
+      .trim()
+      .escape(),
+    body("contactLastName")
+      .isLength({ min: 3, max: 50 })
+      .withMessage("Name Length")
+      .isAlpha()
+      .withMessage("Name must be letters")
+      .trim()
+      .escape(),
+  ],
+  async (req, res, next) => {
     // check for errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
+      return res.status(422).json({ errors: errors.array() });
+    }
     const audienceID = process.env.AUDIENCE_ID;
     const subscribingUser = {
       firstName: `${req.body.contactFirstName}`,
@@ -80,59 +101,73 @@ app.post('/signup',[
       email: `${req.body.contactEmail}`,
     };
 
-    try{
-        const response = await mailchimp.lists.addListMember(
-          audienceID, {
-            email_address: subscribingUser.email,
-            status: "subscribed",
-            merge_fields: {
-              FNAME: subscribingUser.firstName,
-              LNAME: subscribingUser.lastName,
-            }
-          }
-        );
-        console.log(
+    try {
+      const response = await mailchimp.lists.addListMember(audienceID, {
+        email_address: subscribingUser.email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: subscribingUser.firstName,
+          LNAME: subscribingUser.lastName,
+        },
+      });
+      console.log(
         `Successfully added contact as an audience member. 
-        The contact's id is ${response.id}.`);
-      }catch(error){
-        console.log(error);
-      }
-    res.render('signup');
+        The contact's id is ${response.id}.`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    res.render("signup");
     next();
-});
+  }
+);
 
 // donation route
-app.post('/donate',[  // Express-Validation. Check/Sanitize body
-  body('_replyto') // email address
-    .isEmail()
-    .normalizeEmail(),
-  body('first')
-    .isLength({min: 3, max: 50}).withMessage('Name Length')
-    .isAlpha().withMessage('Name must be letters').trim().escape(),
-  body('last')
-    .isLength({min: 3, max: 50}).withMessage('Name Length')
-    .isAlpha().withMessage('Name must be letters').trim().escape(),
-  body('amount')
-    .toInt().isInt({min: 5, max: 1000})
-    .withMessage('Accepting Donations between $5 - $1000')
-], async (req, res, next) => {
+app.post(
+  "/donate",
+  [
+    // Express-Validation. Check/Sanitize body
+    body("_replyto") // email address
+      .isEmail()
+      .normalizeEmail(),
+    body("first")
+      .isLength({ min: 3, max: 50 })
+      .withMessage("Name Length")
+      .isAlpha()
+      .withMessage("Name must be letters")
+      .trim()
+      .escape(),
+    body("last")
+      .isLength({ min: 3, max: 50 })
+      .withMessage("Name Length")
+      .isAlpha()
+      .withMessage("Name must be letters")
+      .trim()
+      .escape(),
+    body("amount")
+      .toInt()
+      .isInt({ min: 5, max: 1000 })
+      .withMessage("Accepting Donations between $5 - $1000"),
+  ],
+  async (req, res, next) => {
     // Check if request has any errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-    const name =  `${req.body.first} ${req.body.last}`;
+      return res.status(422).json({ errors: errors.array() });
+    }
+    const name = `${req.body.first} ${req.body.last}`;
     const email = req.body._replyto;
     const amount = req.body.amount;
-    console.log('Amount = ' + amount);
+    console.log("Amount = " + amount);
 
-    if (amount > 0){ // Data is valid!
+    if (amount > 0) {
+      // Data is valid!
       try {
         // Create a Stripe Payment Intent object:
-        const stripe = require('stripe')(stripe_skey);
+        const stripe = require("stripe")(stripe_skey);
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount * 100, // In cents
-          currency: 'usd',
+          currency: "usd",
           receipt_email: email,
         });
 
@@ -140,48 +175,58 @@ app.post('/donate',[  // Express-Validation. Check/Sanitize body
         donationCollection = new Donor({
           name: name,
           amount: amount,
-          paymentIntent: paymentIntent.client_secret
+          paymentIntent: paymentIntent.client_secret,
         });
 
         // pass PaymentIntent object to client-side
-        res.render('card', {name: name, amount: amount, intentSecret: paymentIntent.client_secret });
-      } catch(err) {
-        console.log('Error! ', err.message);
+        res.render("card", {
+          name: name,
+          amount: amount,
+          intentSecret: paymentIntent.client_secret,
+        });
+      } catch (err) {
+        console.log("Error! ", err.message);
       }
     }
-    next(); 
-  });
+    next();
+  }
+);
 
 // complete transaction
-app.post('/charge',[//
-  body('address')
-    .trim().escape(),
-  body('city')
-    .trim().escape(),
-  body('state')
-    .trim().escape(),
-], (req, res, next)=>{
+app.post(
+  "/charge",
+  [
+    //
+    body("address").trim().escape(),
+    body("city").trim().escape(),
+    body("state").trim().escape(),
+  ],
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
+    donationCollection
+      .save()
+      .then((response) => {
+        console.log(`Donor Created: ${response}`);
+      })
+      .catch((err) => console.log(err));
+
+    console.log("payment processed");
+    res.render("thanks");
+    next();
   }
-
-  donationCollection.save()
-    .then((response)=>{
-      console.log(`Donor Created: ${response}`);
-    }).catch(err=>console.log(err));
-    
-  console.log('payment processed');
-  res.render('thanks');
-  next(); 
-});
+);
 
 // connect database
-mongoose.connect(database, {useNewUrlParser: true, useUnifiedTopology: true})
-.then((response)=>{
-  console.log('connected to database');
-  app.listen(port, ()=>{
-    console.log('Listening on port: '+ port);
-  });
-}).catch(err=>console.log(err));
+mongoose
+  .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((response) => {
+    console.log("connected to database");
+    app.listen(port, () => {
+      console.log("Listening on port: " + port);
+    });
+  })
+  .catch((err) => console.log(err));
