@@ -1,32 +1,29 @@
-// check if in production mode
-if (process.env.NODE_ENV !== "production") {
-  const env = require("dotenv");
-  env.config();
-}
+// configure environment
+require("dotenv").config();
+
+const env = process.env.NODE_ENV;
 
 // API Keys
-const stripe_skey = process.env.STRIPE_SKEY;
-const mailchimp_key = process.env.MAILCHIMP_KEY;
+let stripe_key = process.env.STRIPE_SKEY;
 const database = process.env.DATABASE;
+
+if (env.trim() === "development") {
+  stripe_key = process.env.testSKEY;
+  console.log(`using ${process.env.NODE_ENV}environment`);
+}
 
 // Imports
 const express = require("express");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
-const mailchimp = require("@mailchimp/mailchimp_marketing");
 const mongoose = require("mongoose");
 const Donor = require("./models/donor");
 
-// config environment
+// init express application
 const app = express();
 const port = process.env.PORT || 3000;
-mailchimp.setConfig({
-  apiKey: mailchimp_key,
-  server: "us2",
-});
 
-// globally visibile donation object
-// overwritten when new donation is created
+// record donation name and amount
 let donationCollection = {};
 
 // Initialize View Engine
@@ -67,60 +64,6 @@ app.get("/loader.js", (req, res) => {
   res.header("Content-Type", "text/javascript");
   res.sendFile(path.join(__dirname, "loader.js"));
 });
-
-// newsletter subscription
-app.post(
-  "/signup",
-  [
-    body("contactEmail").isEmail().normalizeEmail(),
-    body("contactFirstName")
-      .isLength({ min: 3, max: 50 })
-      .withMessage("Name Length")
-      .isAlpha()
-      .withMessage("Name must be letters")
-      .trim()
-      .escape(),
-    body("contactLastName")
-      .isLength({ min: 3, max: 50 })
-      .withMessage("Name Length")
-      .isAlpha()
-      .withMessage("Name must be letters")
-      .trim()
-      .escape(),
-  ],
-  async (req, res, next) => {
-    // check for errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-    const audienceID = process.env.AUDIENCE_ID;
-    const subscribingUser = {
-      firstName: `${req.body.contactFirstName}`,
-      lastName: `${req.body.contactLastName}`,
-      email: `${req.body.contactEmail}`,
-    };
-
-    try {
-      const response = await mailchimp.lists.addListMember(audienceID, {
-        email_address: subscribingUser.email,
-        status: "subscribed",
-        merge_fields: {
-          FNAME: subscribingUser.firstName,
-          LNAME: subscribingUser.lastName,
-        },
-      });
-      console.log(
-        `Successfully added contact as an audience member. 
-        The contact's id is ${response.id}.`
-      );
-    } catch (error) {
-      console.log(error);
-    }
-    res.render("signup");
-    next();
-  }
-);
 
 // donation route
 app.post(
@@ -164,7 +107,7 @@ app.post(
       // Data is valid!
       try {
         // Create a Stripe Payment Intent object:
-        const stripe = require("stripe")(stripe_skey);
+        const stripe = require("stripe")(stripe_key);
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount * 100, // In cents
           currency: "usd",
@@ -193,32 +136,25 @@ app.post(
 );
 
 // complete transaction
-app.post(
-  "/charge",
-  [
-    //
-    body("address").trim().escape(),
-    body("city").trim().escape(),
-    body("state").trim().escape(),
-  ],
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
-    donationCollection
-      .save()
-      .then((response) => {
-        console.log(`Donor Created: ${response}`);
-      })
-      .catch((err) => console.log(err));
-
-    console.log("payment processed");
-    res.render("thanks");
-    next();
+app.post("/charge", (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
   }
-);
+
+  donationCollection
+    .save()
+    .then((response) => {
+      console.log(`Donor Created: ${response}`);
+    })
+    .catch((err) => console.log(err));
+
+  donationCollection = {};
+
+  console.log("payment processed");
+  res.render("thanks");
+  next();
+});
 
 // connect database
 mongoose

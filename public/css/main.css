@@ -139,6 +139,30 @@ textarea:focus {
   width: 100px;
 }
 
+.amt-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.amt-btn {
+  /* border: #0d47a1 solid 2px; */
+  border: none;
+  outline: none;
+  margin: 0px 12px;
+  text-align: center;
+  padding: 0px 25px;
+}
+
+#submit {
+  margin-top: 12px;
+}
+
+.statementP1 {
+  padding-bottom: 8px;
+  border-bottom: #b61c1c solid 4px;
+}
+
 .error {
   padding-bottom: 20px;
 }
