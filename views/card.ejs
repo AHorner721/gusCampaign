@@ -1,70 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ios support -->
-    <link rel="apple-touch-icon" href="/img/icons/icon96x96.png">
-    <meta name="apple-mobile-web-app-status-bar" content="#ffffff">
-    <meta name="theme-color" content="#0d47a1">
+    <link rel="apple-touch-icon" href="/img/icons/icon96x96.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#ffffff" />
+    <meta name="theme-color" content="#0d47a1" />
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/card.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/card.css" />
     <title>Donate</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <main class="container billBox">
-        <div class="row">
-            <div class="col s12 l10 offset-l1">
-                <section class="card large">
-                    <div class="card-image paymentImg">
-                        <img src="/img/success.png" alt="flag" class="responsive-img">
-                    </div>
-                    <div class="card billCard"> 
-                        <article class="card-content" id="billingForm">
-                            <form id="card" action="/charge" method="POST">
-                                <h5 class="blue-text text-darken-4 center">Complete Your Donation</h5>
-                                <!-- pass in name from server -->
-                                <p class="center thanks-msg">Thank you, <%= name %>, for your generosity! Please enter your payment details below to complete your donation.</p>
-                                <div class="input-field formstart">
-                                    <input type="text" id="cardHolderName" name="cardHolderName" value='<%= name %>' required disabled>
-                                    <label type="text" for="cardHolderName">Cardholder-name:</label>
-                                </div>
-                                
-                                <div class="stripeInput">
-                                    <!-- <label for="card-element">Credit or Debit Card Number:</label> -->
-                                    <!-- Stripe Item 1 - Uses Elements Library -->
-                                    <div id="card-element"></div>
-                                    <div id="card-errors"></div>
-                                    <hr>
-                                </div>
-                                <div class="error" id="card-errors"></div>
-                                <div class="input-field center">
-                                    <!-- Stripe Item 2 - intentSecret or client-secret comes from PaymentIntent. Handles processing  -->
-                                    <button id="card-button" name="cardButton" class="btn red darken-4" data-secret=<%= intentSecret %>>Donate $<%= amount %></button>
-                                </div> 
-                            </form>
-      
-                        </article>
-                        <div id="blue" class="right-align">
-                            <a href="/" class="waves-effect waves-blue btn-flat">
-                            <i class="material-icons left">arrow_back</i>Return</a>
-                        </div>
-                    </div>
-                </section>
+      <div class="row">
+        <div class="col s12 l10 offset-l1">
+          <section class="card large">
+            <div class="card-image paymentImg">
+              <img src="/img/success.png" alt="flag" class="responsive-img" />
             </div>
+            <div class="card billCard">
+              <article class="card-content" id="billingForm">
+                <form id="card" action="/charge" method="POST">
+                  <h5 class="blue-text text-darken-4 center">
+                    Complete Your Donation
+                  </h5>
+                  <!-- pass in name from server -->
+                  <!-- prettier-ignore -->
+                  <p class="center thanks-msg">Thank you, <%= name %>, for your generosity! Please enter your payment details below to complete your donation.</p>
+                  <br />
+                  <hr />
+                  <br />
+
+                  <!-- prettier-ignore -->
+                  <div class="hide email" value="<%= email %>"></div>
+                  <div class="stripeInput">
+                    <!-- Stripe Item 1 - Uses Elements Library -->
+                    <div id="payment-element"></div>
+                    <div id="card-errors"></div>
+                  </div>
+                  <div class="error" id="card-errors"></div>
+                  <div class="input-field center">
+                    <!-- Stripe Item 2 - intentSecret or client-secret comes from PaymentIntent. Handles processing  -->
+                    <!-- prettier-ignore -->
+                    <button type="submit" id="card-button" name="cardButton" class="btn red darken-4" value='<%= amount %>' data-secret=<%= intentSecret %>>Donate $<%= amount %></button>
+                  </div>
+                </form>
+              </article>
+              <div id="blue" class="right-align">
+                <a href="/" class="waves-effect waves-blue btn-flat">
+                  <i class="material-icons left">arrow_back</i>Return</a
+                >
+              </div>
+            </div>
+          </section>
         </div>
+      </div>
     </main>
     <!-- stripe library/handling -->
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript" src="/stripe.js"></script>
     <!-- Compiled and minified Materialize Lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
+  </body>
 </html>

@@ -1,6 +1,7 @@
 // configure environment
 require("dotenv").config();
 
+//TODO: env with dotenv or heroku variables
 const env = process.env.NODE_ENV;
 
 // API Keys
@@ -65,7 +66,12 @@ app.get("/loader.js", (req, res) => {
   res.sendFile(path.join(__dirname, "loader.js"));
 });
 
-// donation route
+// donation routes
+app.get("/pubkey", (req, res) => {
+  // TODO: change to real pubkey
+  res.json({ pubKey: process.env.testPUB });
+});
+
 app.post(
   "/donate",
   [
@@ -89,8 +95,8 @@ app.post(
       .escape(),
     body("amount")
       .toInt()
-      .isInt({ min: 5, max: 1000 })
-      .withMessage("Accepting Donations between $5 - $1000"),
+      .isInt({ min: 5, max: 100 })
+      .withMessage("Accepting Donations between $5 - $100"),
   ],
   async (req, res, next) => {
     // Check if request has any errors
@@ -111,7 +117,7 @@ app.post(
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount * 100, // In cents
           currency: "usd",
-          receipt_email: email,
+          payment_method_types: ["card"],
         });
 
         // create donor document
@@ -126,6 +132,7 @@ app.post(
           name: name,
           amount: amount,
           intentSecret: paymentIntent.client_secret,
+          email: email,
         });
       } catch (err) {
         console.log("Error! ", err.message);
@@ -135,7 +142,7 @@ app.post(
   }
 );
 
-// complete transaction
+// confirm transaction
 app.post("/charge", (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
