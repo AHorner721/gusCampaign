@@ -2,8 +2,8 @@
 let stripe_skey = process.env.STRIPE_SKEY;
 let stripe_pubkey = process.env.STRIPE_PUBKEY;
 
-// configure environment for development if node env is not production
-if (process.env.NODE_ENV.trim() !== "production") {
+// configure environment for development
+if (process.env.NODE_ENV && process.env.NODE_ENV.trim() === "development") {
   const env = require("dotenv");
   env.config();
   stripe_skey = process.env.testSKEY;
