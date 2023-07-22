@@ -1,19 +1,17 @@
-// configure environment
-require("dotenv").config();
+// set API Keys
+let stripe_skey = process.env.STRIPE_SKEY;
+let stripe_pubkey = process.env.STRIPE_PUBKEY;
 
-//TODO: env with dotenv or heroku variables
-const env = process.env.NODE_ENV;
-
-// API Keys
-let stripe_key = process.env.STRIPE_SKEY;
-const database = process.env.DATABASE;
-
-if (env.trim() === "development") {
-  stripe_key = process.env.testSKEY;
+// configure environment for development if node env is not production
+if (process.env.NODE_ENV.trim() !== "production") {
+  const env = require("dotenv");
+  env.config();
+  stripe_skey = process.env.testSKEY;
+  stripe_pubkey = process.env.testPUB;
   console.log(`using ${process.env.NODE_ENV}environment`);
 }
 
-// Imports
+// import middleware
 const express = require("express");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
@@ -23,6 +21,9 @@ const Donor = require("./models/donor");
 // init express application
 const app = express();
 const port = process.env.PORT || 3000;
+
+// set database URI
+const database = process.env.DATABASE;
 
 // record donation name and amount
 let donationCollection = {};
@@ -68,8 +69,7 @@ app.get("/loader.js", (req, res) => {
 
 // donation routes
 app.get("/pubkey", (req, res) => {
-  // TODO: change to real pubkey
-  res.json({ pubKey: process.env.testPUB });
+  res.json({ pubKey: stripe_pubkey });
 });
 
 app.post(
@@ -78,7 +78,9 @@ app.post(
     // Express-Validation. Check/Sanitize body
     body("_replyto") // email address
       .isEmail()
-      .normalizeEmail(),
+      .normalizeEmail()
+      .trim()
+      .escape(),
     body("first")
       .isLength({ min: 3, max: 50 })
       .withMessage("Name Length")
@@ -94,6 +96,8 @@ app.post(
       .trim()
       .escape(),
     body("amount")
+      .trim()
+      .escape()
       .toInt()
       .isInt({ min: 5, max: 100 })
       .withMessage("Accepting Donations between $5 - $100"),
@@ -113,11 +117,13 @@ app.post(
       // Data is valid!
       try {
         // Create a Stripe Payment Intent object:
-        const stripe = require("stripe")(stripe_key);
+        const stripe = require("stripe")(stripe_skey);
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount * 100, // In cents
           currency: "usd",
-          payment_method_types: ["card"],
+          automatic_payment_methods: {
+            enabled: true,
+          },
         });
 
         // create donor document
@@ -152,13 +158,12 @@ app.post("/charge", (req, res, next) => {
   donationCollection
     .save()
     .then((response) => {
-      console.log(`Donor Created: ${response}`);
+      console.log(`Donation saved. ID: ${response._id}`);
     })
     .catch((err) => console.log(err));
 
   donationCollection = {};
 
-  console.log("payment processed");
   res.render("thanks");
   next();
 });

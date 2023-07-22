@@ -1,5 +1,5 @@
 window.onload = async (event) => {
-  // get pubkey stripe
+  // get pubkey
   const { pubKey } = await fetch("/pubkey")
     .then((response) => {
       return response.json();
@@ -16,9 +16,8 @@ window.onload = async (event) => {
 
   // initialize Stripe
   const stripe = Stripe(pubKey);
-  // NOTE: Need to use var or stripe card element wont work
-  var elements = document.querySelector("#payment-element");
-  elements = stripe.elements({
+
+  const elements = stripe.elements({
     mode: "payment",
     currency: "usd",
     amount: amount,
@@ -41,11 +40,12 @@ window.onload = async (event) => {
   donateButton.addEventListener("submit", async (event) => {
     event.preventDefault();
     try {
+      console.log(donateButton.value);
       const result = await stripe.confirmPayment({
         elements,
         clientSecret,
         confirmParams: {
-          return_url: "http://localhost:3000/thanks", // change to live url
+          return_url: `${window.location.origin}/thanks`, // on success redirect to thank you page
           receipt_email: emailAddress.value,
         },
       });

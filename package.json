@@ -24,8 +24,8 @@
     "mongoose": "^5.13.17",
     "stripe": "^8.134.0"
   },
-  "engines":{
-    "node": "14.x"
+  "engines": {
+    "node": "18.x"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
