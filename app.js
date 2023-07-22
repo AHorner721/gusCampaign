@@ -121,9 +121,7 @@ app.post(
         const paymentIntent = await stripe.paymentIntents.create({
           amount: amount * 100, // In cents
           currency: "usd",
-          automatic_payment_methods: {
-            enabled: true,
-          },
+          payment_method_types: ["card"],
         });
 
         // create donor document
