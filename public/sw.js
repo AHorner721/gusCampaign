@@ -1,4 +1,4 @@
-const version = 2;
+const version = 5;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -11,6 +11,7 @@ const assets = [
   "/manifest.json",
   "/css/card.css",
   "/css/main.css",
+  "/css/checkout.css",
   "/img/gus4.jpg",
   "/img/gusblackmarine.jpg",
   "/img/flag5.jpg",

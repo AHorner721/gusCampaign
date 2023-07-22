@@ -24,6 +24,7 @@
     />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="checkout.css" />
     <title>Donate</title>
   </head>
   <body>
@@ -51,6 +52,7 @@
                   <div class="hide email" value="<%= email %>"></div>
                   <div class="stripeInput">
                     <!-- Stripe Item 1 - Uses Elements Library -->
+                    <div id="link-authentication-element"></div>
                     <div id="payment-element"></div>
                     <div id="card-errors"></div>
                   </div>
@@ -58,8 +60,11 @@
                   <div class="input-field center">
                     <!-- Stripe Item 2 - intentSecret or client-secret comes from PaymentIntent. Handles processing  -->
                     <!-- prettier-ignore -->
-                    <button type="submit" id="card-button" name="cardButton" class="btn red darken-4" value='<%= amount %>' data-secret=<%= intentSecret %>>Donate $<%= amount %></button>
+                    <button type="submit" id="card-button" name="cardButton" class="btn red darken-4" value='<%= amount %>' data-secret=<%= intentSecret %>>Donate $<%= amount %>
+                      <div class="spinner hidden" id="spinner"></div>
+                    </button>
                   </div>
+                  <div id="payment-message" class="hidden"></div>
                 </form>
               </article>
               <div id="blue" class="right-align">

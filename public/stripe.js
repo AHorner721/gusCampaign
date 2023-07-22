@@ -17,7 +17,7 @@ window.onload = async (event) => {
   // initialize Stripe
   const stripe = Stripe(pubKey);
 
-  const elements = stripe.elements({
+  let elements = stripe.elements({
     mode: "payment",
     currency: "usd",
     amount: amount,
@@ -36,9 +36,25 @@ window.onload = async (event) => {
     }
   });
 
+  // Show a spinner on payment submission
+  function setLoading(isLoading) {
+    if (isLoading) {
+      // Disable the button and show a spinner
+      document.querySelector("#submit").disabled = true;
+      document.querySelector("#spinner").classList.remove("hidden");
+      document.querySelector("#button-text").classList.add("hidden");
+    } else {
+      document.querySelector("#submit").disabled = false;
+      document.querySelector("#spinner").classList.add("hidden");
+      document.querySelector("#button-text").classList.remove("hidden");
+    }
+  }
+
   // Upon clicking donate button, complete the payment:
   donateButton.addEventListener("submit", async (event) => {
     event.preventDefault();
+    setLoading(true);
+
     try {
       console.log(donateButton.value);
       const result = await stripe.confirmPayment({
@@ -58,5 +74,6 @@ window.onload = async (event) => {
       document.getElementById("card-errors").textContent = err.message;
       return false;
     }
+    setLoading(false);
   });
 };
