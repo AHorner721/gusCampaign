@@ -7,9 +7,10 @@ window.onload = async (event) => {
     .catch((err) => console.log("error", err));
 
   // get form elements
+  const form = document.getElementById("card");
   const donateButton = document.getElementById("card-button");
   const emailAddress = document.querySelector(".email");
-  const clientSecret = donateButton.dataset.secret;
+  const clientSecret = form.dataset.secret;
   const amount = donateButton.value * 100;
 
   console.log(`donating: ${amount}`);
@@ -40,18 +41,30 @@ window.onload = async (event) => {
   function setLoading(isLoading) {
     if (isLoading) {
       // Disable the button and show a spinner
-      document.querySelector("#submit").disabled = true;
+      donateButton.disabled = true;
       document.querySelector("#spinner").classList.remove("hide");
     } else {
-      document.querySelector("#submit").disabled = false;
+      donateButton.disabled = false;
       document.querySelector("#spinner").classList.add("hide");
     }
   }
 
   // Upon clicking donate button, complete the payment:
-  donateButton.addEventListener("submit", async (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (!stripe) {
+      // Stripe.js hasn't yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
     setLoading(true);
+
+    // Trigger form validation and wallet collection
+    const { error: submitError } = await elements.submit();
+    if (submitError) {
+      document.getElementById("card-errors").textContent = submitError.message;
+      return;
+    }
 
     try {
       console.log(donateButton.value);
@@ -66,11 +79,11 @@ window.onload = async (event) => {
       if (result.error) {
         document.getElementById("card-errors").textContent =
           result.error.message;
-        return false;
+        return;
       }
     } catch (err) {
       document.getElementById("card-errors").textContent = err.message;
-      return false;
+      return;
     }
     setLoading(false);
   });

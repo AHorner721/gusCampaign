@@ -37,7 +37,7 @@
             <div class="card billCard">
               <article class="card-content" id="billingForm">
                 <!-- prettier-ignore -->
-                <form id="card" action="/charge" method="POST" data-secret=<%= intentSecret %> >
+                <form id="card" data-secret=<%= intentSecret %> >
                   <h5 class="blue-text text-darken-4 center">
                     Complete Your Donation
                   </h5>
@@ -61,7 +61,7 @@
                     <!-- Stripe Item 2 - intentSecret or client-secret comes from PaymentIntent. Handles processing  -->
                     <!-- prettier-ignore -->
                     <button type="submit" id="card-button" name="cardButton" class="btn red darken-4" value='<%= amount %>'>Donate $<%= amount %>
-                      <div class="spinner hide" id="spinner"></div>
+                      <div class="spinner hide" id="spinner">Processing...</div>
                     </button>
                   </div>
                   <div id="payment-message" class="hidden"></div>
