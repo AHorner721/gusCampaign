@@ -37,7 +37,7 @@
             <div class="card billCard">
               <article class="card-content" id="billingForm">
                 <!-- prettier-ignore -->
-                <form id="card" data-secret=<%= intentSecret %> action="/charge" method="POST">
+                <form id="card" action="/charge" method="POST" data-secret=<%= intentSecret %> >
                   <h5 class="blue-text text-darken-4 center">
                     Complete Your Donation
                   </h5>

@@ -1,4 +1,4 @@
-const version = 9;
+const version = 1;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -45,7 +45,6 @@ const assets = [
   "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css",
   "https://js.stripe.com/v3/",
   "https://code.jquery.com/jquery-3.5.1.min.js",
-  "https://platform.twitter.com/widgets.js",
 ];
 
 // install event
