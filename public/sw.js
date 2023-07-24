@@ -1,4 +1,4 @@
-const version = 21;
+const version = 22;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -22,7 +22,6 @@ const assets = [
   "/img/flag4.jpg",
   "/img/blueribbon.jpg",
   "/img/GUS2-cropped.jpg",
-  "/img/flag2.jpg",
   "/img/plants.jpg",
   "/img/money.jpg",
   "/img/childcare.jpg",
