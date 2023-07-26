@@ -19,13 +19,20 @@ A progressive web application to support Garsheo "Gus" Black's campaign efforts 
 
 #### Prerequistes
 
-- node v14.x^
+- node v18.x^
+- .env file for environment variables
 
 #### Setup
 
 1. In project terminal, install dependencies with `npm install`
-2. To monitor and reload on changes run `npm run serve`
-3. To start application run `npm run start`
+2. Start application in development: `npm run dev`
+3. Start application in production: `npm run start`
+
+- Note: Running application in development uses Stripe's test keys instead of live keys.
+
+#### Testing
+
+1. To start unit tests run: `npm test`
 
 ### Preview
 

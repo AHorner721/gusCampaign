@@ -303,9 +303,13 @@ textarea:focus {
   }
   #submit {
     font-size: 12px;
+    margin-top: 5px;
   }
   header {
     margin-top: 0px;
     background-size: 390px 300px;
+  }
+  .amt-btn {
+    margin: 0px 5px;
   }
 }

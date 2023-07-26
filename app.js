@@ -1,32 +1,18 @@
-// set API Keys
-let stripe_skey = process.env.STRIPE_SKEY;
-let stripe_pubkey = process.env.STRIPE_PUBKEY;
-
-// configure environment for development
-if (process.env.NODE_ENV && process.env.NODE_ENV.trim() === "development") {
-  const env = require("dotenv");
-  env.config();
-  stripe_skey = process.env.testSKEY;
-  stripe_pubkey = process.env.testPUB;
-  console.log(`using ${process.env.NODE_ENV}environment`);
-}
+const getConfig = require("./utils/config");
+const { stripe_pubkey } = getConfig();
+const getPaymentIntent = require("./utils/payment");
+const { createDonation, saveDonation } = require("./db");
 
 // import middleware
 const express = require("express");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
-const mongoose = require("mongoose");
-const Donor = require("./models/donor");
 
+// TODO: Wrap app in it's own function
 // init express application
 const app = express();
-const port = process.env.PORT || 3000;
 
-// set database URI
-const database = process.env.DATABASE;
-
-// record donation name and amount
-let donationCollection = {};
+let donation;
 
 // Initialize View Engine
 app.set("view engine", "ejs");
@@ -49,11 +35,8 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.render("index");
 });
-app.get("/accomplishments", (req, res) => {
-  res.render("accomplishments");
-});
 
-// PWA handling manifest, service worker, and loader file
+// PWA handling manifest, service worker, and loader
 app.get("/manifest.json", (req, res) => {
   res.header("Content-Type", "text/cache-manifest");
   res.sendFile(path.join(__dirname, "manifest.json"));
@@ -67,7 +50,7 @@ app.get("/loader.js", (req, res) => {
   res.sendFile(path.join(__dirname, "loader.js"));
 });
 
-// donation routes
+// donation handling
 app.get("/pubkey", (req, res) => {
   res.json({ pubKey: stripe_pubkey });
 });
@@ -117,21 +100,10 @@ app.post(
       // Data is valid!
       try {
         // Create a Stripe Payment Intent object:
-        const stripe = require("stripe")(stripe_skey);
-        const paymentIntent = await stripe.paymentIntents.create({
-          amount: amount * 100, // In cents
-          currency: "usd",
-          automatic_payment_methods: {
-            enabled: true,
-          },
-        });
+        const paymentIntent = await getPaymentIntent(amount);
 
         // create donor document
-        donationCollection = new Donor({
-          name: name,
-          amount: amount,
-          paymentIntent: paymentIntent.client_secret,
-        });
+        donation = createDonation(name, amount, paymentIntent);
 
         // pass PaymentIntent object to client-side
         res.render("card", {
@@ -154,27 +126,11 @@ app.get("/thanks", (req, res, next) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
-
-  donationCollection
-    .save()
-    .then((response) => {
-      console.log(`Donation saved. ID: ${response._id}`);
-    })
-    .catch((err) => console.log(err));
-
-  donationCollection = {};
+  // save donation
+  saveDonation(donation);
 
   res.render("thanks");
   next();
 });
 
-// connect database
-mongoose
-  .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((response) => {
-    console.log("connected to database");
-    app.listen(port, () => {
-      console.log("Listening on port: " + port);
-    });
-  })
-  .catch((err) => console.log(err));
+module.exports = app;
