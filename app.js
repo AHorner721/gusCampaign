@@ -34,7 +34,7 @@ const makeApp = (
 
   // Routes
   app.get("/", (req, res) => {
-    res.render("index");
+    res.render("pages/index");
   });
 
   // PWA handling manifest, service worker, and loader
@@ -108,7 +108,7 @@ const makeApp = (
 
           res.status(200);
           // pass PaymentIntent object to client-side
-          res.render("card", {
+          res.render("pages/card", {
             name: name,
             amount: amount,
             intentSecret: paymentIntent.client_secret,
@@ -131,7 +131,7 @@ const makeApp = (
     // save donation
     saveDonation(donation);
 
-    res.render("thanks");
+    res.render("pages/thanks");
     next();
   });
 

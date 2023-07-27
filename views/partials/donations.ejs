@@ -1,0 +1,95 @@
+<h2 class="tagline blue-text text-darken-4 center">
+  <i class="starIcons material-icons">star</i>
+  Donate
+  <i class="starIcons material-icons">star</i>
+</h2>
+<div class="row">
+  <!-- donation form  -->
+  <section class="col s12 l6">
+    <form id="card" method="POST" action="/donate">
+      <!-- <h5 class="indigo-text darken-4 center">Get Started Now</h5> -->
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input type="text" id="d_name" name="first" required />
+        <label type="text" for="d_name">First Name:</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input type="text" id="L_name" name="last" required />
+        <label type="text" for="L_name">Last Name:</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">email</i>
+        <input type="email" id="d_email" name="_replyto" required />
+        <label type="email" for="d_email">Email</label>
+        <!-- <p class="center">Receipt will be sent to the email provided.</p> -->
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">monetization_on</i>
+        <input type="number" id="amount" name="amount" min="5" />
+        <label type="text" for="amount">Amount</label>
+      </div>
+      <div class="input-field center amt-container">
+        <button
+          type="button"
+          id="five"
+          class="waves-effect waves-light blue darken-4 white-text btn amt-btn"
+          name="five"
+          value="5"
+        >
+          $5
+        </button>
+        <button
+          type="button"
+          id="ten"
+          class="waves-effect waves-light blue darken-4 white-text btn amt-btn"
+          name="ten"
+          value="10"
+        >
+          $10
+        </button>
+        <button
+          type="button"
+          id="fifteen"
+          class="waves-effect waves-light blue darken-4 white-text btn amt-btn"
+          name="fifteen"
+          value="15"
+        >
+          $15
+        </button>
+        <button
+          type="button"
+          id="twenty"
+          class="waves-effect waves-light blue darken-4 white-text btn amt-btn"
+          name="twenty"
+          value="20"
+        >
+          $20
+        </button>
+      </div>
+      <div class="input-field center">
+        <button id="submit" class="btn blue darken-4">Donate</button>
+      </div>
+    </form>
+  </section>
+  <!-- donation statement -->
+  <section class="col s12 l5 offset-l1">
+    <article>
+      <div>
+        <p class="statementP1">
+          We need to start giving back to our city, and help grow our city by
+          bringing in more revenue. Growing our city is going to take
+          leadership. I am a proven leader having lead more than 100,000
+          Marines. I know what it takes to be a leader. Leadership starts from
+          the top.
+        </p>
+
+        <p>
+          Richland, if you re-elect me as your Alderman, I will dedicate myself
+          to serve in the best interest of our city. I love Richland, and I love
+          our country. May God bless you, our city, and our country.
+        </p>
+      </div>
+    </article>
+  </section>
+</div>
