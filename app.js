@@ -37,6 +37,10 @@ const makeApp = (
     res.render("pages/index");
   });
 
+  app.get("/photos", (req, res) => {
+    res.render("pages/photos");
+  });
+
   // PWA handling manifest, service worker, and loader
   app.get("/manifest.json", (req, res) => {
     res.header("Content-Type", "text/cache-manifest");

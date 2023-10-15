@@ -247,6 +247,11 @@ textarea:focus {
   bottom: 15% !important;
 }
 
+.imgRow {
+  max-height: 250px;
+  overflow: hidden;
+}
+
 @media (min-width: 850px) {
   .slides,
   .slider {
@@ -280,7 +285,10 @@ textarea:focus {
     font-size: 20px;
   }
   .parallax-container {
-    height: 250px;
+    height: 100px;
+  }
+  .landing {
+    margin: 50px auto 0px auto;
   }
 }
 
@@ -311,5 +319,6 @@ textarea:focus {
   }
   .amt-btn {
     margin: 0px 5px;
+    padding: 0px 12px;
   }
 }
