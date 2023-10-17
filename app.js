@@ -87,8 +87,8 @@ const makeApp = (
         .trim()
         .escape()
         .toInt()
-        .isInt({ min: 5, max: 100 })
-        .withMessage("Accepting Donations between $5 - $100"),
+        .isInt({ min: 5, max: 250 })
+        .withMessage("Accepting Donations between $5 - $250"),
     ],
     async (req, res, next) => {
       // Check if request has any errors

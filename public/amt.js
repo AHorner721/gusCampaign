@@ -1,21 +1,9 @@
 // set donation amount
-const five = document.querySelector("#five");
-const ten = document.querySelector("#ten");
 const fifteen = document.querySelector("#fifteen");
-const twenty = document.querySelector("#twenty");
+const twentyFive = document.querySelector("#twentyfive");
+const fifty = document.querySelector("#fifty");
+const oneHundred = document.querySelector("#onehundred");
 const amount = document.querySelector("#amount");
-
-five.addEventListener("click", async (event) => {
-  event.preventDefault();
-  amount.value = five.value;
-  amount.focus();
-});
-
-ten.addEventListener("click", async (event) => {
-  event.preventDefault();
-  amount.value = ten.value;
-  amount.focus();
-});
 
 fifteen.addEventListener("click", async (event) => {
   event.preventDefault();
@@ -23,8 +11,20 @@ fifteen.addEventListener("click", async (event) => {
   amount.focus();
 });
 
-twenty.addEventListener("click", async (event) => {
+twentyFive.addEventListener("click", async (event) => {
   event.preventDefault();
-  amount.value = twenty.value;
+  amount.value = twentyFive.value;
+  amount.focus();
+});
+
+fifty.addEventListener("click", async (event) => {
+  event.preventDefault();
+  amount.value = fifty.value;
+  amount.focus();
+});
+
+oneHundred.addEventListener("click", async (event) => {
+  event.preventDefault();
+  amount.value = oneHundred.value;
   amount.focus();
 });

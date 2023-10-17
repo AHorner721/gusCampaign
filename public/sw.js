@@ -1,4 +1,4 @@
-const version = 58;
+const version = 64;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -36,7 +36,7 @@ const assets = [
   "/img/GusAtScienceFair.webp",
   "/img/GusAtSouthernUniversityTop.webp",
   "/img/GusByTank.webp",
-  "/img/gusandtank.webp",
+  "/img/gusandtankresize.webp",
   "/img/GusWithATV.webp",
   "/img/GusWithMilitaryVechile.webp",
   "/img/waterdrive.webp",

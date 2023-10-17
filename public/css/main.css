@@ -247,9 +247,8 @@ textarea:focus {
   bottom: 15% !important;
 }
 
-.imgRow {
-  max-height: 250px;
-  overflow: hidden;
+#allPhotosBtn {
+  margin-top: 0;
 }
 
 @media (min-width: 850px) {
@@ -260,6 +259,11 @@ textarea:focus {
 
   .slider .indicators {
     bottom: -40px;
+  }
+
+  .imgRow {
+    max-height: 250px;
+    overflow: hidden;
   }
 }
 
