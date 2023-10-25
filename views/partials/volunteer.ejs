@@ -1,0 +1,95 @@
+<h2 class="tagline blue-text text-darken-4 center">
+  <i class="starIcons material-icons">star</i>
+  Volunteer
+  <i class="starIcons material-icons">star</i>
+</h2>
+<div class="row">
+  <!-- volunteer form  -->
+  <section class="col s12 l4 push-l1">
+    <form id="volunteerForm" method="POST" action="/volunteer">
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input
+          type="text"
+          id="volunteer_first_name"
+          name="volunteerFirstName"
+          required
+        />
+        <label type="text" for="volunteer_first_name">First Name:</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input
+          type="text"
+          id="volunteer_last_name"
+          name="volunteerLastName"
+          required
+        />
+        <label type="text" for="volunteer_last_name">Last Name:</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">local_phone</i>
+        <input type="number" id="volunteer_phone" name="_phone" required />
+        <label type="text" for="volunteer_phone">Phone number</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">email</i>
+        <input type="email" id="volunteer_email" name="_vEmail" required />
+        <label type="email" for="volunteer">Email</label>
+      </div>
+      <div class="volunteerOptions">
+        <div class="input-field optionMargin">
+          <p>
+            <label>
+              <input type="checkbox" name="makeCalls" value="make calls" /><span
+                >Make calls</span
+              >
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" name="sendTexts" value="send text" /><span
+                >Send texts</span
+              >
+            </label>
+          </p>
+        </div>
+        <div class="input-field">
+          <p>
+            <label>
+              <input
+                type="checkbox"
+                name="knockDoors"
+                value="knock on doors"
+              /><span>Knock on doors</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input
+                type="checkbox"
+                name="voterRegistration"
+                value="voter registration"
+              /><span>Voter registration</span>
+            </label>
+          </p>
+        </div>
+      </div>
+      <div class="input-field center">
+        <button id="submit" class="btn blue darken-4">Join</button>
+      </div>
+    </form>
+  </section>
+  <!-- Volunteer statement -->
+  <section class="col s12 l5 offset-l2">
+    <article>
+      <h5 class="blue-text text-darken-4 center">Join the team</h5>
+      <div>
+        <p class="statementP1">
+          Gus Black will bring invaluable leadership and experience as
+          Richaland's Mayor. Help spread the word.
+        </p>
+      </div>
+    </article>
+  </section>
+</div>

@@ -251,6 +251,37 @@ textarea:focus {
   margin-top: 0;
 }
 
+.input-field input:focus + label,
+textarea:focus + label,
+.input[type="checkbox"] {
+  color: #0d47a1 !important;
+}
+/* label underline focus color */
+.row .input-field input:focus,
+textarea:focus {
+  border-bottom: 1px solid #0d47a1 !important;
+  box-shadow: 0 1px 0 0 #0d47a1 !important;
+}
+
+[type="checkbox"]:checked + span:not(.lever):before {
+  border-right: 2px solid #0d47a1 !important;
+  border-bottom: 2px solid #0d47a1 !important;
+}
+
+.volunteerOptions {
+  display: flex;
+  justify-content: center;
+}
+
+.optionMargin {
+  margin-right: 15%;
+}
+
+.volunteerOptions p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 @media (min-width: 850px) {
   .slides,
   .slider {

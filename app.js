@@ -2,6 +2,8 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
+const nodemailer = require("nodemailer");
+// require("dotenv").config(); // for email env variables
 
 const makeApp = (
   createDonation,
@@ -54,6 +56,92 @@ const makeApp = (
     res.header("Content-Type", "text/javascript");
     res.sendFile(path.join(__dirname, "loader.js"));
   });
+
+  app.post(
+    "/volunteer",
+    [
+      // Express-Validation. Check/Sanitize body
+      body("_vEmail").isEmail().normalizeEmail().trim().escape(),
+      body("volunteerFirstName")
+        .isLength({ min: 3, max: 50 })
+        .withMessage("Name Length")
+        .isAlpha()
+        .withMessage("Name must be letters")
+        .trim()
+        .escape(),
+      body("volunteerLastName")
+        .isLength({ min: 3, max: 50 })
+        .withMessage("Name Length")
+        .isAlpha()
+        .withMessage("Name must be letters")
+        .trim()
+        .escape(),
+      body("_phone")
+        .trim()
+        .escape()
+        .isMobilePhone()
+        .withMessage("Please provide a valid phone number"),
+    ],
+    async (req, res, next) => {
+      // Check if request has any errors
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+      }
+
+      const {
+        volunteerFirstName,
+        volunteerLastName,
+        _phone,
+        _vEmail,
+        ...choices
+      } = req.body;
+
+      // create a node mailer transporter
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          type: "OAuth2",
+          user: process.env.EMAIL_ADDRESS,
+          clientId: process.env.EMAIL_CLIENT_ID,
+          clientSecret: process.env.EMAIL_CLIENT_SECRET,
+        },
+      });
+
+      // constructing email
+      const mailOptions = {
+        from: {
+          name: "Gus Campaign App",
+          address: process.env.EMAIL_ADDRESS,
+        },
+        to: process.env.TO_EMAIL_ADDRESS,
+        subject: "Volunteer Form Submission",
+        text: `Name: ${volunteerFirstName} ${volunteerLastName}
+          \nPhone: ${_phone}, Email: ${_vEmail}
+          \nVolunteer choices: ${choices}`,
+      };
+
+      // send email
+      try {
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.error(error);
+            res.send("Email not sent. Please try again.");
+          } else {
+            console.log("Email sent: " + info.response);
+            res.render("pages/success");
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
+
+      next();
+    }
+  );
 
   // donation handling
   app.get("/pubkey", (req, res) => {
