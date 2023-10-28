@@ -24,6 +24,11 @@ nav {
   font-weight: 600;
 }
 
+.navlink:hover,
+.navlink:active > a {
+  border-bottom: solid #0d47a1 2px;
+}
+
 .tagline,
 h2 {
   font-family: "Playfair Display", serif;

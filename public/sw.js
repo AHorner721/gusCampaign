@@ -1,4 +1,4 @@
-const version = 79;
+const version = 89;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -41,6 +41,8 @@ const assets = [
   "/img/GusWithATV.webp",
   "/img/GusWithMilitaryVechile.webp",
   "/img/waterdrive.webp",
+  "/img/police.webp",
+  "/img/Richland-Rec-Center-2023-10-02-Source-Jaala-Jones.webp",
   "/img/army-corp-eng.jpg",
   "/img/award-ceremony.jpg",
   "/img/district-ceremony.jpg",
