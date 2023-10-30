@@ -24,9 +24,12 @@ nav {
   font-weight: 600;
 }
 
-.navlink:hover,
-.navlink:active > a {
+.navlink:hover {
   border-bottom: solid #0d47a1 2px;
+}
+
+#navDonateButton:hover {
+  border-bottom: solid white 2px;
 }
 
 .tagline,
@@ -269,6 +272,9 @@ textarea:focus {
   .imgRow {
     max-height: 250px;
     overflow: hidden;
+  }
+  #blue {
+    margin-top: 10px;
   }
 }
 
