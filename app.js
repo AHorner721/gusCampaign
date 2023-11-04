@@ -2,8 +2,8 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
-const nodemailer = require("nodemailer");
-// require("dotenv").config(); // for email env variables
+const EmailAuth = require("./utils/googleAuth");
+const Email = require("./utils/email");
 
 const makeApp = (
   createDonation,
@@ -14,7 +14,11 @@ const makeApp = (
   // init express application
   const app = express();
 
-  let donation;
+  let donation = null;
+
+  // setup email auth for volunteer submission
+  const emailauth = new EmailAuth();
+  let email = null;
 
   // Initialize View Engine
   app.set("view engine", "ejs");
@@ -80,7 +84,7 @@ const makeApp = (
         .trim()
         .escape()
         .isMobilePhone()
-        .withMessage("Please provide a valid phone number"),
+        .withMessage("Please provide a valid phone number without dashes"),
     ],
     async (req, res, next) => {
       // Check if request has any errors
@@ -97,51 +101,46 @@ const makeApp = (
         ...choices
       } = req.body;
 
-      // create a node mailer transporter
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-          type: "OAuth2",
-          user: process.env.EMAIL_ADDRESS,
-          clientId: process.env.EMAIL_CLIENT_ID,
-          clientSecret: process.env.EMAIL_CLIENT_SECRET,
-        },
-      });
+      let volunteerChoices = "";
 
-      // constructing email
-      const mailOptions = {
-        from: {
-          name: "Gus Campaign App",
-          address: process.env.EMAIL_ADDRESS,
-        },
-        to: process.env.TO_EMAIL_ADDRESS,
-        subject: "Volunteer Form Submission",
-        text: `Name: ${volunteerFirstName} ${volunteerLastName}
-          \nPhone: ${_phone}, Email: ${_vEmail}
-          \nVolunteer choices: ${choices}`,
-      };
-
-      // send email
-      try {
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            console.error(error);
-            res.send("Email not sent. Please try again.");
-          } else {
-            console.log("Email sent: " + info.response);
-            res.render("pages/success");
-          }
-        });
-      } catch (err) {
-        console.log(err);
+      for (const [key, value] of Object.entries(choices)) {
+        volunteerChoices += value + ", ";
       }
+
+      // remove trailing comma
+      volunteerChoices = volunteerChoices.slice(0, -2);
+
+      email = new Email(
+        volunteerFirstName,
+        volunteerLastName,
+        _vEmail,
+        _phone,
+        volunteerChoices
+      );
+
+      // redirect app to email auth url
+      const authURL = await emailauth.getAuthorizeURL();
+
+      res.redirect(authURL);
 
       next();
     }
   );
+
+  app.get("/oauth", async (req, res, next) => {
+    // get auth code
+    const authorizationCode = req.query.code;
+    let tokens = await emailauth.getTokens(authorizationCode);
+
+    try {
+      email.createEmail(tokens);
+      console.log("email message created. Attempting to send...");
+      email.sendEmail();
+      res.render("pages/success");
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
   // donation handling
   app.get("/pubkey", (req, res) => {
@@ -222,6 +221,7 @@ const makeApp = (
     }
     // save donation
     saveDonation(donation);
+    donation = null;
 
     res.render("pages/thanks");
     next();
