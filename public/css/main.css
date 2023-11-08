@@ -24,6 +24,14 @@ nav {
   font-weight: 600;
 }
 
+.navlink:hover {
+  border-bottom: solid #0d47a1 2px;
+}
+
+#navDonateButton:hover {
+  border-bottom: solid white 2px;
+}
+
 .tagline,
 h2 {
   font-family: "Playfair Display", serif;
@@ -296,6 +304,9 @@ textarea:focus {
     max-height: 250px;
     overflow: hidden;
   }
+  #blue {
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 1153px) {
@@ -324,6 +335,9 @@ textarea:focus {
   }
   .landing {
     margin: 50px auto 0px auto;
+  }
+  em {
+    font-size: 2.4rem;
   }
 }
 

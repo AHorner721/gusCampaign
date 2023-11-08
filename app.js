@@ -155,21 +155,25 @@ const makeApp = (
         .isEmail()
         .normalizeEmail()
         .trim()
-        .escape(),
+        .replace(" ", "")
+        .escape()
+        .withMessage("Please enter valid email"),
       body("first")
         .isLength({ min: 3, max: 50 })
         .withMessage("Name Length")
-        .isAlpha()
-        .withMessage("Name must be letters")
         .trim()
-        .escape(),
+        .replace(" ", "")
+        .escape()
+        .isAlpha()
+        .withMessage("Name must be letters"),
       body("last")
         .isLength({ min: 3, max: 50 })
         .withMessage("Name Length")
-        .isAlpha()
-        .withMessage("Name must be letters")
         .trim()
-        .escape(),
+        .replace(" ", "")
+        .escape()
+        .isAlpha()
+        .withMessage("Name must be letters"),
       body("amount")
         .trim()
         .escape()
