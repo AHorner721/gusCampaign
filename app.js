@@ -67,22 +67,24 @@ const makeApp = (
       body("volunteerFirstName")
         .isLength({ min: 3, max: 50 })
         .withMessage("Name Length")
-        .isAlpha()
-        .withMessage("Name must be letters")
         .trim()
-        .escape(),
+        .replace(" ", "")
+        .escape()
+        .isAlpha()
+        .withMessage("Name must be letters"),
       body("volunteerLastName")
         .isLength({ min: 3, max: 50 })
         .withMessage("Name Length")
-        .isAlpha()
-        .withMessage("Name must be letters")
         .trim()
-        .escape(),
+        .replace(" ", "")
+        .escape()
+        .isAlpha()
+        .withMessage("Name must be letters"),
       body("_phone")
         .trim()
         .escape()
         .isMobilePhone()
-        .withMessage("Please provide a valid phone number without dashes"),
+        .withMessage("Please provide a valid phone number"),
     ],
     async (req, res, next) => {
       // Check if request has any errors
