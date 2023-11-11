@@ -2,7 +2,6 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const { body, validationResult } = require("express-validator");
-const EmailAuth = require("./utils/googleAuth");
 const Email = require("./utils/email");
 
 const makeApp = (
@@ -17,7 +16,6 @@ const makeApp = (
   let donation = null;
 
   // setup email auth for volunteer submission
-  const emailauth = new EmailAuth();
   let email = null;
 
   // Initialize View Engine
@@ -118,29 +116,18 @@ const makeApp = (
         volunteerChoices
       );
 
-      // redirect app to email auth url
-      const authURL = await emailauth.getAuthorizeURL();
-
-      res.redirect(authURL);
+      try {
+        email.createEmail();
+        console.log("email message created. Attempting to send...");
+        email.sendEmail();
+        res.render("pages/success");
+      } catch (err) {
+        console.log(err);
+      }
 
       next();
     }
   );
-
-  app.get("/oauth", async (req, res, next) => {
-    // get auth code
-    const authorizationCode = req.query.code;
-    let tokens = await emailauth.getTokens(authorizationCode);
-
-    try {
-      email.createEmail(tokens);
-      console.log("email message created. Attempting to send...");
-      email.sendEmail();
-      res.render("pages/success");
-    } catch (err) {
-      console.log(err);
-    }
-  });
 
   // donation handling
   app.get("/pubkey", (req, res) => {

@@ -21,7 +21,7 @@ class Email {
         name: "Gus Campaign App",
         address: process.env.EMAIL_ADDRESS,
       },
-      to: process.env.TO_EMAIL_ADDRESS,
+      to: [process.env.TO_EMAIL_ADDRESS, process.env.TO_EMAIL_ADDRESS2],
       subject: "Volunteer Form Submission",
       text: `Name: ${this.firstName} ${this.lastName}
             \nPhone: ${this.phoneNumber}, \nEmail: ${this.emailAddress}
@@ -29,20 +29,15 @@ class Email {
     };
   }
 
-  createEmail(tokens) {
+  createEmail() {
     this.transporter = nodemailer.createTransport({
       service: "gmail",
       host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
+      port: 587,
+      secure: false,
       auth: {
-        type: "OAuth2",
         user: process.env.EMAIL_ADDRESS,
-        clientId: process.env.EMAIL_CLIENT_ID,
-        clientSecret: process.env.EMAIL_CLIENT_SECRET,
-        refreshToken: tokens.refresh_token,
-        accessToken: tokens.access_token,
-        accessUrl: process.env.ACCESS_URL,
+        pass: process.env.APP_PASS,
       },
     });
   }
