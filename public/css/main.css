@@ -343,7 +343,7 @@ textarea:focus {
 
 @media (max-width: 400px) {
   #app-title-bar {
-    font-size: 15px;
+    font-size: 12px;
   }
   .tagline,
   h1 {
