@@ -121,8 +121,12 @@ const makeApp = (
       try {
         email.createEmail();
         console.log("email message created. Attempting to send...");
-        email.sendEmail();
-        res.render("pages/success");
+        const emailSent = email.sendEmail();
+        if (emailSent) {
+          res.render("pages/success");
+        } else {
+          res.render("pages/oops");
+        }
       } catch (err) {
         console.log(err);
       }
