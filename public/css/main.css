@@ -290,6 +290,14 @@ textarea:focus {
   margin-bottom: 0px;
 }
 
+.newsTitle {
+  margin-top: -12px;
+}
+
+.newsImage {
+  margin-bottom: 12px;
+}
+
 @media (min-width: 850px) {
   .slides,
   .slider {
