@@ -122,11 +122,10 @@ const makeApp = (
         email.createEmail();
         console.log("email message created. Attempting to send...");
         const emailSent = email.sendEmail();
-        if (emailSent) {
-          res.render("pages/success");
-        } else {
+        if (!emailSent) {
           res.render("pages/oops");
         }
+        res.render("pages/success");
       } catch (err) {
         console.log(err);
       }
