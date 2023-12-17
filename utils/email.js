@@ -47,10 +47,8 @@ class Email {
       this.transporter.sendMail(this.mailOptions, (error, info) => {
         if (error) {
           console.error(error);
-          return false;
         } else {
           console.log("Email sent: " + info.response);
-          return true;
         }
       });
     } catch (err) {
