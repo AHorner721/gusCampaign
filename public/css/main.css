@@ -4,7 +4,7 @@ body {
 }
 
 .landing {
-  max-width: 80%;
+  max-width: 100%;
   margin: 50px auto;
   font-family: "Playfair Display", serif;
 }
@@ -298,6 +298,12 @@ textarea:focus {
   margin-bottom: 12px;
 }
 
+@media (min-width: 1000px) {
+  .landing img {
+    max-height: 1200px;
+  }
+}
+
 @media (min-width: 850px) {
   .slides,
   .slider {
@@ -305,6 +311,8 @@ textarea:focus {
   }
 
   .slider .indicators {
+    position: relative;
+    top: 12px;
     bottom: -40px;
   }
 

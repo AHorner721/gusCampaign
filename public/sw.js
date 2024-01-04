@@ -1,4 +1,4 @@
-const version = 66;
+const version = 71;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -18,6 +18,7 @@ const assets = [
   "/img/exchangeClub-small.jpg",
   "/img/sidebyside.jpg",
   "/img/GUS3.jpg",
+  "/img/GusBlackYardSign.webp",
   "/img/GUS3-1.jpg",
   "/img/flag4.jpg",
   "/img/blueribbon.jpg",
@@ -31,7 +32,9 @@ const assets = [
   "/img/flag6-op2.jpg",
   "/img/bestLanding.jpg",
   "/img/landing2023.png",
+  "/img/mayor_landing2023.webp",
   "/img/alderman_gus1.webp",
+  "/img/gusForMayor.webp",
   "/img/gusandrandall_small.webp",
   "/img/GusAtRetirementCeremony.webp",
   "/img/GusAtScienceFair.webp",
