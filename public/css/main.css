@@ -300,6 +300,10 @@ textarea:focus {
   margin-bottom: 12px;
 }
 
+.speech {
+  max-width: 900px;
+}
+
 @media (min-width: 1000px) {
   .landing img {
     width: 80%;

@@ -1,4 +1,4 @@
-const version = 76;
+const version = 89;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -12,13 +12,9 @@ const assets = [
   "/css/card.css",
   "/css/main.css",
   "/img/gus4.jpg",
-  "/img/gusblackmarine.jpg",
   "/img/flag5.jpg",
-  "/img/blackfam-v2.jpg",
   "/img/exchangeClub-small.jpg",
-  "/img/sidebyside.jpg",
   "/img/GUS3.jpg",
-  "/img/GusBlackYardSign.webp",
   "/img/GUS3-1.jpg",
   "/img/flag4.jpg",
   "/img/blueribbon.jpg",
@@ -43,11 +39,11 @@ const assets = [
   "/img/gusandtankresize.webp",
   "/img/GusWithATV.webp",
   "/img/GusWithMilitaryVechile.webp",
-  "/img/kyle-carpenter-and-gus-black.webp",
   "/img/waterdrive.webp",
   "/img/police.webp",
   "/img/seniorcenter.webp",
-  "/img/gusUSMC2023.webp",
+  "/img/meetcandidates.jpg",
+  "/img/gus.png",
   "/img/royretirementceremonyresized.webp",
   "/img/toydrive.webp",
   "/img/Richland-Rec-Center-2023-10-02-Source-Jaala-Jones.webp",
