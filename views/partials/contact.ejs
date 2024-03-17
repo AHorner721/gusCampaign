@@ -1,0 +1,51 @@
+<h2 class="tagline blue-text text-darken-4 center">
+  <i class="starIcons material-icons">star</i>
+  Contact Gus
+  <i class="starIcons material-icons">star</i>
+</h2>
+<div class="row">
+  <!-- Contact form  -->
+  <section class="col s12 l8 push-l2">
+    <form id="contactForm" method="POST" action="/contact">
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input
+          type="text"
+          id="contact_first_name"
+          name="contactFirstName"
+          required
+        />
+        <label type="text" for="contact_first_name">First Name:</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input
+          type="text"
+          id="contact_last_name"
+          name="contactLastName"
+          required
+        />
+        <label type="text" for="contact_last_name">Last Name:</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">email</i>
+        <input type="email" id="contact_email" name="_cEmail" required />
+        <label type="email" for="contact">Email</label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">message</i>
+        <textarea
+          type="text"
+          id="contact_message"
+          name="_message"
+          rows="10"
+          required
+        ></textarea>
+        <label type="text" for="contact_message">Message</label>
+      </div>
+      <div class="input-field center">
+        <button id="submit" class="btn blue darken-4">Send</button>
+      </div>
+    </form>
+  </section>
+</div>

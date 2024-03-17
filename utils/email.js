@@ -2,18 +2,11 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 class Email {
-  constructor(
-    firstName,
-    lastName,
-    emailAddress,
-    phoneNumber,
-    volunteerChoices
-  ) {
+  constructor(firstName, lastName, emailAddress, message) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailAddress = emailAddress;
-    this.phoneNumber = phoneNumber;
-    this.volunteerChoices = volunteerChoices;
+    this.message = message;
     this.transporter = null;
 
     this.mailOptions = {
@@ -22,10 +15,10 @@ class Email {
         address: process.env.EMAIL_ADDRESS,
       },
       to: [process.env.TO_EMAIL_ADDRESS, process.env.TO_EMAIL_ADDRESS2],
-      subject: "Volunteer Form Submission",
+      subject: "Contact Form Submission",
       text: `Name: ${this.firstName} ${this.lastName}
-            \nPhone: ${this.phoneNumber}, \nEmail: ${this.emailAddress}
-            \nVolunteer choices: ${this.volunteerChoices}`,
+            \nEmail: ${this.emailAddress}
+            \nMessage: ${this.message}`,
     };
   }
 

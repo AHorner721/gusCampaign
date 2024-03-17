@@ -55,12 +55,84 @@ const makeApp = (
     res.sendFile(path.join(__dirname, "loader.js"));
   });
 
+  // app.post(
+  //   "/volunteer",
+  //   [
+  //     // Express-Validation. Check/Sanitize body
+  //     body("_vEmail").isEmail().normalizeEmail().trim().escape(),
+  //     body("volunteerFirstName")
+  //       .isLength({ min: 3, max: 50 })
+  //       .withMessage("Name Length")
+  //       .trim()
+  //       .replace(" ", "")
+  //       .escape()
+  //       .isAlpha()
+  //       .withMessage("Name must be letters"),
+  //     body("volunteerLastName")
+  //       .isLength({ min: 3, max: 50 })
+  //       .withMessage("Name Length")
+  //       .trim()
+  //       .replace(" ", "")
+  //       .escape()
+  //       .isAlpha()
+  //       .withMessage("Name must be letters"),
+  //     body("_phone")
+  //       .trim()
+  //       .escape()
+  //       .isMobilePhone()
+  //       .withMessage("Please provide a valid phone number"),
+  //   ],
+  //   async (req, res, next) => {
+  //     // Check if request has any errors
+  //     const errors = validationResult(req);
+  //     if (!errors.isEmpty()) {
+  //       return res.status(422).json({ errors: errors.array() });
+  //     }
+
+  //     const {
+  //       volunteerFirstName,
+  //       volunteerLastName,
+  //       _phone,
+  //       _vEmail,
+  //       ...choices
+  //     } = req.body;
+
+  //     let volunteerChoices = "";
+
+  //     for (const [key, value] of Object.entries(choices)) {
+  //       volunteerChoices += value + ", ";
+  //     }
+
+  //     // remove trailing comma
+  //     volunteerChoices = volunteerChoices.slice(0, -2);
+
+  //     email = new Email(
+  //       volunteerFirstName,
+  //       volunteerLastName,
+  //       _vEmail,
+  //       _phone,
+  //       volunteerChoices
+  //     );
+
+  //     try {
+  //       email.createEmail();
+  //       console.log("email message created. Attempting to send...");
+  //       email.sendEmail();
+  //       res.render("pages/success");
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+
+  //     next();
+  //   }
+  // );
+
   app.post(
-    "/volunteer",
+    "/contact",
     [
       // Express-Validation. Check/Sanitize body
-      body("_vEmail").isEmail().normalizeEmail().trim().escape(),
-      body("volunteerFirstName")
+      body("_cEmail").isEmail().normalizeEmail().trim().escape(),
+      body("contactFirstName")
         .isLength({ min: 3, max: 50 })
         .withMessage("Name Length")
         .trim()
@@ -68,7 +140,7 @@ const makeApp = (
         .escape()
         .isAlpha()
         .withMessage("Name must be letters"),
-      body("volunteerLastName")
+      body("contactLastName")
         .isLength({ min: 3, max: 50 })
         .withMessage("Name Length")
         .trim()
@@ -76,11 +148,7 @@ const makeApp = (
         .escape()
         .isAlpha()
         .withMessage("Name must be letters"),
-      body("_phone")
-        .trim()
-        .escape()
-        .isMobilePhone()
-        .withMessage("Please provide a valid phone number"),
+      body("_message").trim().escape(),
     ],
     async (req, res, next) => {
       // Check if request has any errors
@@ -89,30 +157,9 @@ const makeApp = (
         return res.status(422).json({ errors: errors.array() });
       }
 
-      const {
-        volunteerFirstName,
-        volunteerLastName,
-        _phone,
-        _vEmail,
-        ...choices
-      } = req.body;
+      const { contactFirstName, contactLastName, _message, _cEmail } = req.body;
 
-      let volunteerChoices = "";
-
-      for (const [key, value] of Object.entries(choices)) {
-        volunteerChoices += value + ", ";
-      }
-
-      // remove trailing comma
-      volunteerChoices = volunteerChoices.slice(0, -2);
-
-      email = new Email(
-        volunteerFirstName,
-        volunteerLastName,
-        _vEmail,
-        _phone,
-        volunteerChoices
-      );
+      email = new Email(contactFirstName, contactLastName, _cEmail, _message);
 
       try {
         email.createEmail();

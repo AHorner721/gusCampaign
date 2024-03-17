@@ -304,6 +304,10 @@ textarea:focus {
   max-width: 900px;
 }
 
+#contact_message {
+  min-height: 200px;
+}
+
 @media (min-width: 1000px) {
   .landing img {
     width: 80%;
