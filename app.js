@@ -157,6 +157,36 @@ const makeApp = (
         return res.status(422).json({ errors: errors.array() });
       }
 
+      let captchaStatus = false;
+
+      const params = new URLSearchParams({
+        secret: process.env.captchaSecret,
+        response: req.body["g-recaptcha-response"],
+        remoteip: req.ip,
+      });
+
+      console.log("Running captcha check...");
+
+      fetch("https://www.google.com/recaptcha/api/siteverify", {
+        method: "POST",
+        body: params,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            console.log("Received captcha response!");
+            captchaStatus = true;
+          } else {
+            console.log("Captcha failed");
+            captchaStatus = false;
+          }
+        });
+
+      // Check if captcha is complete
+      if (!captchaStatus) {
+        return res.status(422);
+      }
+
       const { contactFirstName, contactLastName, _message, _cEmail } = req.body;
 
       email = new Email(contactFirstName, contactLastName, _cEmail, _message);
