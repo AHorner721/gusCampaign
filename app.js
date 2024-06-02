@@ -187,7 +187,7 @@ const makeApp = (
 
       // Check if captcha is complete
       if (!captchaStatus) {
-        return res.status(422);
+        return res.status(422).json({ message: "complete captcha" });
       }
 
       const { contactFirstName, contactLastName, _message, _cEmail } = req.body;
