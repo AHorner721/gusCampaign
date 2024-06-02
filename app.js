@@ -167,18 +167,21 @@ const makeApp = (
 
       console.log("Running captcha check...");
 
-      fetch("https://www.google.com/recaptcha/api/siteverify", {
-        method: "POST",
-        body: params,
-      })
+      captchaStatus = await fetch(
+        "https://www.google.com/recaptcha/api/siteverify",
+        {
+          method: "POST",
+          body: params,
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {
             console.log("Received captcha response!");
-            captchaStatus = true;
+            return true;
           } else {
             console.log("Captcha failed");
-            captchaStatus = false;
+            return false;
           }
         });
 
