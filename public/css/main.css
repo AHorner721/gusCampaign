@@ -308,6 +308,24 @@ textarea:focus {
   min-height: 200px;
 }
 
+.QRContainer{
+  max-width: 80%;
+  margin: 0;
+}
+
+#modal1.modal.open{
+  margin-left: 0px;
+  max-width: 70%;
+}
+
+.QRCode{
+  width: 100%;
+}
+
+.QRClose{
+  max-width: 80%;
+}
+
 @media (min-width: 1000px) {
   .landing img {
     width: 80%;
