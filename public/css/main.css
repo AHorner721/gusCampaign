@@ -314,16 +314,12 @@ textarea:focus {
 }
 
 #modal1.modal.open{
-  margin-left: 0px;
-  max-width: 70%;
+  margin-left: 0;
+  max-width: 85%;
 }
 
 .QRCode{
   width: 100%;
-}
-
-.QRClose{
-  max-width: 80%;
 }
 
 @media (min-width: 1000px) {
