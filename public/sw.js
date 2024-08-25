@@ -1,4 +1,4 @@
-const version = 104;
+const version = 105;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -11,6 +11,7 @@ const assets = [
   "/manifest.json",
   "/css/card.css",
   "/css/main.css",
+  "/img/qrcode_www.aldermangusblack.com.png",
   "/img/gus4.jpg",
   "/img/flag5.jpg",
   "/img/exchangeClub-small.jpg",
@@ -99,20 +100,38 @@ self.addEventListener("activate", (evt) => {
 // fetch event
 self.addEventListener("fetch", (evt) => {
   //console.log('fetch event', evt);
-  evt.respondWith(
-    caches
-      .match(evt.request)
-      .then((cacheRes) => {
-        return (
-          cacheRes ||
-          fetch(evt.request).then((fetchRes) => {
-            return caches.open(dynamicCacheName).then((cache) => {
-              cache.put(evt.request.url, fetchRes.clone());
-              return fetchRes;
-            });
-          })
-        );
-      })
-      .catch(() => caches.match("/fallback.html"))
-  );
+  evt.respondWith(networkFirst(evt.request));
 });
+// self.addEventListener("fetch", (evt) => {
+//   //console.log('fetch event', evt);
+//   evt.respondWith(
+//     caches
+//       .match(evt.request)
+//       .then((cacheRes) => {
+//         return (
+//           cacheRes ||
+//           fetch(evt.request).then((fetchRes) => {
+//             return caches.open(dynamicCacheName).then((cache) => {
+//               cache.put(evt.request.url, fetchRes.clone());
+//               return fetchRes;
+//             });
+//           })
+//         );
+//       })
+//       .catch(() => caches.match("/fallback.html"))
+//   );
+// });
+
+async function networkFirst(request) {
+  try {
+    const networkResponse = await fetch(request);
+    if (networkResponse.ok) {
+      const cache = await caches.open(staticCacheName);
+      cache.put(request, networkResponse.clone());
+    }
+    return networkResponse;
+  } catch (error) {
+    const cachedResponse = await caches.match(request);
+    return cachedResponse || Response.error();
+  }
+}
