@@ -338,6 +338,10 @@ textarea:focus {
   justify-content: space-between;
 }
 
+/* .RecCenterImgWrapper{
+  max-width: 399px;
+} */
+
 @media (min-width: 1000px) {
   .landing img {
     width: 80%;
