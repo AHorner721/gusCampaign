@@ -309,13 +309,13 @@ textarea:focus {
 }
 
 .QRContainer{
-  max-width: 80%;
-  margin: 0;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 #modal1.modal.open{
-  margin-left: 0;
-  max-width: 85%;
+  margin: 0 auto;
+  max-width: 450px;
 }
 
 .QRCode{
@@ -382,6 +382,16 @@ textarea:focus {
   }
   em {
     font-size: 2.4rem;
+  }
+
+  .QRContainer{
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  #modal1.modal.open{
+    margin-left: 0;
+    max-width: 260px;
   }
 }
 
