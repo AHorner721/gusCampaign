@@ -25,7 +25,7 @@ const saveDonation = (donation) => {
 // connect database
 const connectDatabase = () => {
   mongoose
-    .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(database)
     .then((response) => {
       console.log("connected to database");
     })
