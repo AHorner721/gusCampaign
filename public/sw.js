@@ -1,4 +1,4 @@
-const version = 123;
+const version = 124;
 
 const staticCacheName = `site-static-v${version}`;
 const dynamicCacheName = `site-dynamic-v${version}`;
@@ -12,6 +12,9 @@ const assets = [
   "/css/card.css",
   "/css/main.css",
   "/img/qrcode_www.aldermangusblack.com.png",
+  "/img/gusHwyCleanup2025.jpg",
+  "/img/gusSleepingBag2025.avif",
+  "/img/gusSleepingBag1.avif",
   "/img/gus-flag-2025.avif",
   "/img/gus-suit-2025.avif",
   "/img/gus-2025-1.jpg",
