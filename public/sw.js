@@ -18,6 +18,7 @@ const assets = [
   "/img/gus-flag-2025.avif",
   "/img/gus-suit-2025.avif",
   "/img/easter.avif",
+  "/img/sign.avif",
   "/img/meetthecandidates.avif",
   "/img/gus-2025-1.jpg",
   "/img/gus-2025-2.jpg",
