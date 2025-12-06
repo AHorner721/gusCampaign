@@ -322,6 +322,10 @@ textarea:focus {
   width: 100%;
 }
 
+.about-section{
+  margin-top: 100px;
+}
+
 @media (min-width: 1000px) {
   .landing img {
     width: 80%;

@@ -41,6 +41,10 @@ const makeApp = (
     res.render("pages/index");
   });
 
+  //   app.get("/photos", (req, res) => {
+  //   res.render("pages/photos");
+  // });
+
   // PWA handling manifest, service worker, and loader
   app.get("/manifest.json", (req, res) => {
     res.header("Content-Type", "text/cache-manifest");
@@ -127,174 +131,174 @@ const makeApp = (
   //   }
   // );
 
-  app.post(
-    "/contact",
-    [
-      // Express-Validation. Check/Sanitize body
-      body("_cEmail").isEmail().normalizeEmail().trim().escape(),
-      body("contactFirstName")
-        .isLength({ min: 3, max: 50 })
-        .withMessage("Name Length")
-        .trim()
-        .replace(" ", "")
-        .escape()
-        .isAlpha()
-        .withMessage("Name must be letters"),
-      body("contactLastName")
-        .isLength({ min: 3, max: 50 })
-        .withMessage("Name Length")
-        .trim()
-        .replace(" ", "")
-        .escape()
-        .isAlpha()
-        .withMessage("Name must be letters"),
-      body("_message").trim().escape(),
-    ],
-    async (req, res, next) => {
-      // Check if request has any errors
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() });
-      }
+  // app.post(
+  //   "/contact",
+  //   [
+  //     // Express-Validation. Check/Sanitize body
+  //     body("_cEmail").isEmail().normalizeEmail().trim().escape(),
+  //     body("contactFirstName")
+  //       .isLength({ min: 3, max: 50 })
+  //       .withMessage("Name Length")
+  //       .trim()
+  //       .replace(" ", "")
+  //       .escape()
+  //       .isAlpha()
+  //       .withMessage("Name must be letters"),
+  //     body("contactLastName")
+  //       .isLength({ min: 3, max: 50 })
+  //       .withMessage("Name Length")
+  //       .trim()
+  //       .replace(" ", "")
+  //       .escape()
+  //       .isAlpha()
+  //       .withMessage("Name must be letters"),
+  //     body("_message").trim().escape(),
+  //   ],
+  //   async (req, res, next) => {
+  //     // Check if request has any errors
+  //     const errors = validationResult(req);
+  //     if (!errors.isEmpty()) {
+  //       return res.status(422).json({ errors: errors.array() });
+  //     }
 
-      let captchaStatus = false;
+  //     let captchaStatus = false;
 
-      const params = new URLSearchParams({
-        secret: process.env.captchaSecret,
-        response: req.body["g-recaptcha-response"],
-        remoteip: req.ip,
-      });
+  //     const params = new URLSearchParams({
+  //       secret: process.env.captchaSecret,
+  //       response: req.body["g-recaptcha-response"],
+  //       remoteip: req.ip,
+  //     });
 
-      console.log("Running captcha check...");
+  //     console.log("Running captcha check...");
 
-      captchaStatus = await fetch(
-        "https://www.google.com/recaptcha/api/siteverify",
-        {
-          method: "POST",
-          body: params,
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success) {
-            console.log("Received captcha response!");
-            return true;
-          } else {
-            console.log("Captcha failed");
-            return false;
-          }
-        });
+  //     captchaStatus = await fetch(
+  //       "https://www.google.com/recaptcha/api/siteverify",
+  //       {
+  //         method: "POST",
+  //         body: params,
+  //       }
+  //     )
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         if (data.success) {
+  //           console.log("Received captcha response!");
+  //           return true;
+  //         } else {
+  //           console.log("Captcha failed");
+  //           return false;
+  //         }
+  //       });
 
-      // Check if captcha is complete
-      if (!captchaStatus) {
-        return res.status(422).json({ message: "complete captcha" });
-      }
+  //     // Check if captcha is complete
+  //     if (!captchaStatus) {
+  //       return res.status(422).json({ message: "complete captcha" });
+  //     }
 
-      const { contactFirstName, contactLastName, _message, _cEmail } = req.body;
+  //     const { contactFirstName, contactLastName, _message, _cEmail } = req.body;
 
-      email = new Email(contactFirstName, contactLastName, _cEmail, _message);
+  //     email = new Email(contactFirstName, contactLastName, _cEmail, _message);
 
-      try {
-        email.createEmail();
-        console.log("email message created. Attempting to send...");
-        email.sendEmail();
-        res.render("pages/success");
-      } catch (err) {
-        console.log(err);
-      }
+  //     try {
+  //       email.createEmail();
+  //       console.log("email message created. Attempting to send...");
+  //       email.sendEmail();
+  //       res.render("pages/success");
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
 
-      next();
-    }
-  );
+  //     next();
+  //   }
+  // );
 
   // donation handling
-  app.get("/pubkey", (req, res) => {
-    res.json({ pubKey: stripe_pubkey });
-  });
+  // app.get("/pubkey", (req, res) => {
+  //   res.json({ pubKey: stripe_pubkey });
+  // });
 
-  app.post(
-    "/donate",
-    [
-      // Express-Validation. Check/Sanitize body
-      body("_replyto") // email address
-        .isEmail()
-        .normalizeEmail()
-        .trim()
-        .replace(" ", "")
-        .escape()
-        .withMessage("Please enter valid email"),
-      body("first")
-        .isLength({ min: 3, max: 50 })
-        .withMessage("Name Length")
-        .trim()
-        .replace(" ", "")
-        .escape()
-        .isAlpha()
-        .withMessage("Name must be letters"),
-      body("last")
-        .isLength({ min: 3, max: 50 })
-        .withMessage("Name Length")
-        .trim()
-        .replace(" ", "")
-        .escape()
-        .isAlpha()
-        .withMessage("Name must be letters"),
-      body("amount")
-        .trim()
-        .escape()
-        .toInt()
-        .isInt({ min: 5, max: 250 })
-        .withMessage("Accepting Donations between $5 - $250"),
-    ],
-    async (req, res, next) => {
-      // Check if request has any errors
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() });
-      }
-      const name = `${req.body.first} ${req.body.last}`;
-      const email = req.body._replyto;
-      const amount = req.body.amount;
-      console.log("Amount = " + amount);
+  // app.post(
+  //   "/donate",
+  //   [
+  //     // Express-Validation. Check/Sanitize body
+  //     body("_replyto") // email address
+  //       .isEmail()
+  //       .normalizeEmail()
+  //       .trim()
+  //       .replace(" ", "")
+  //       .escape()
+  //       .withMessage("Please enter valid email"),
+  //     body("first")
+  //       .isLength({ min: 3, max: 50 })
+  //       .withMessage("Name Length")
+  //       .trim()
+  //       .replace(" ", "")
+  //       .escape()
+  //       .isAlpha()
+  //       .withMessage("Name must be letters"),
+  //     body("last")
+  //       .isLength({ min: 3, max: 50 })
+  //       .withMessage("Name Length")
+  //       .trim()
+  //       .replace(" ", "")
+  //       .escape()
+  //       .isAlpha()
+  //       .withMessage("Name must be letters"),
+  //     body("amount")
+  //       .trim()
+  //       .escape()
+  //       .toInt()
+  //       .isInt({ min: 5, max: 250 })
+  //       .withMessage("Accepting Donations between $5 - $250"),
+  //   ],
+  //   async (req, res, next) => {
+  //     // Check if request has any errors
+  //     const errors = validationResult(req);
+  //     if (!errors.isEmpty()) {
+  //       return res.status(422).json({ errors: errors.array() });
+  //     }
+  //     const name = `${req.body.first} ${req.body.last}`;
+  //     const email = req.body._replyto;
+  //     const amount = req.body.amount;
+  //     console.log("Amount = " + amount);
 
-      if (amount > 0) {
-        // Data is valid!
-        try {
-          // Create a Stripe Payment Intent object:
-          const paymentIntent = await getPaymentIntent(amount);
+  //     if (amount > 0) {
+  //       // Data is valid!
+  //       try {
+  //         // Create a Stripe Payment Intent object:
+  //         const paymentIntent = await getPaymentIntent(amount);
 
-          // create donor document
-          donation = createDonation(name, amount, paymentIntent);
+  //         // create donor document
+  //         donation = createDonation(name, amount, paymentIntent);
 
-          res.status(200);
-          // pass PaymentIntent object to client-side
-          res.render("pages/card", {
-            name: name,
-            amount: amount,
-            intentSecret: paymentIntent.client_secret,
-            email: email,
-          });
-        } catch (err) {
-          console.log("Error! ", err.message);
-        }
-      }
-      next();
-    }
-  );
+  //         res.status(200);
+  //         // pass PaymentIntent object to client-side
+  //         res.render("pages/card", {
+  //           name: name,
+  //           amount: amount,
+  //           intentSecret: paymentIntent.client_secret,
+  //           email: email,
+  //         });
+  //       } catch (err) {
+  //         console.log("Error! ", err.message);
+  //       }
+  //     }
+  //     next();
+  //   }
+  // );
 
   // confirm transaction
-  app.get("/thanks", (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-    // save donation
-    saveDonation(donation);
-    donation = null;
+  // app.get("/thanks", (req, res, next) => {
+  //   const errors = validationResult(req);
+  //   if (!errors.isEmpty()) {
+  //     return res.status(422).json({ errors: errors.array() });
+  //   }
+  //   // save donation
+  //   saveDonation(donation);
+  //   donation = null;
 
-    res.render("pages/thanks");
-    next();
-  });
+  //   res.render("pages/thanks");
+  //   next();
+  // });
 
   return app;
 };
